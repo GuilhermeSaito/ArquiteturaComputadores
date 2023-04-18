@@ -21,7 +21,7 @@ begin
         if rst='1' then
             registro <= "0000000000000000";
         elsif wr_en='1' then
-            if rising_edge(clk) then
+            if rising_edge(clk) then -- Verificar se essa funcao funciona, qq coisa eu fiz isso aqui em digitais
                 registro <= data_in;
             end if;
         end if;
