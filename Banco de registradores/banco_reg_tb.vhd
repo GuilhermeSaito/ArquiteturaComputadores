@@ -32,10 +32,10 @@ architecture a_banco_reg_tb of banco_reg_tb is
 
 begin
     uut: banco_reg port map (
-        reg1_leitura => "001",
+        reg1_leitura => "010",
         reg2_leitura => "010",
         data_in => data_in,
-        reg_escrita => "011",
+        reg_escrita => "010",
         wr_en => wr_en,
         clk => clk,
         rst => rst,
@@ -44,9 +44,9 @@ begin
     
     reset_global: process -- reseta todas as componentes
     begin
-        rst <= '0';
-        wait for period_time*2;
         rst <= '1';
+        wait for period_time*2;
+        rst <= '0';
         wait;
     end process;
 
@@ -71,7 +71,7 @@ begin
     process
     begin
         wait for 200 ns;
-        wr_en <= '0';
+        wr_en <= '1';
         data_in <= "0000000000000001";
         wait for 100 ns;
         data_in <= "0000000000000011";

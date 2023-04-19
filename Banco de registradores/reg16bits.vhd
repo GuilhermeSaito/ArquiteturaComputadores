@@ -4,11 +4,11 @@ use ieee.numeric_std.all;
 
 entity reg16bits is
     port( 
-    clk : in std_logic;
-    rst : in std_logic;
-    wr_en : in std_logic;
-    data_in : in unsigned(15 downto 0);
-    data_out : out unsigned(15 downto 0)
+        clk : in std_logic;
+        rst : in std_logic;
+        wr_en : in std_logic;
+        data_in : in unsigned(15 downto 0);
+        data_out : out unsigned(15 downto 0)
     );
 end entity;
 
@@ -20,10 +20,8 @@ begin
     begin
         if rst='1' then
             registro <= "0000000000000000";
-        elsif wr_en='1' then
-            if rising_edge(clk) then -- Verificar se essa funcao funciona, qq coisa eu fiz isso aqui em digitais
-                registro <= data_in;
-            end if;
+        elsif wr_en='1' AND rising_edge(clk) then
+            registro <= data_in;
         end if;
     end process;
     

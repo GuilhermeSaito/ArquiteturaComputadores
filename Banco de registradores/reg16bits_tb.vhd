@@ -59,7 +59,7 @@ begin
     process
     begin
         wait for 200 ns;
-        wr_en <= '0';
+        wr_en <= '1';
         data_in <= "0000000000000001";
         wait for 100 ns;
         data_in <= "0000000000000011";
