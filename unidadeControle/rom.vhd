@@ -6,26 +6,26 @@ entity rom is
     port(   
         clk : in std_logic;
         endereco : in unsigned(23 downto 0);
-        dado : out unsigned(11 downto 0)
+        dado : out unsigned(15 downto 0)
     );
 end entity;
 
 architecture a_rom of rom is
 
-    type mem is array (0 to 127) of unsigned(11 downto 0);
+    type mem is array (0 to 127) of unsigned(16 downto 0);
     constant conteudo_rom : mem := (
         -- caso endereco => conteudo
-        0 => "000000000010",
-        1 => "100000000000",
-        2 => "000000000000",
-        3 => "000000000000",
-        4 => "100000000000",
-        5 => "000000000010",
-        6 => "111100000011",
-        7 => "000000000010",
-        8 => "000000000010",
-        9 => "000000000000",
-        10 => "000000000000",
+        0  => "00000000000000010",
+        1  => "00000100000000000",
+        2  => "00000000000000000",
+        3  => "00000000000000000",
+        4  => "00000100000000000",
+        5  => "00000000000000010",
+        6  => "00000111100000011",
+        7  => "00000000000000010",
+        8  => "00000000000000010",
+        9  => "00000000000000000",
+        10 => "00000000000000000",
         -- abaixo: casos omissos => (zero em todos os bits)
         others => (others=>'0')
     );
