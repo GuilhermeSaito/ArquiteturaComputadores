@@ -79,32 +79,6 @@ begin
         estado => estado
     );
 
-    reset_global: process -- reseta todas as componentes
-    begin
-        rst <= '1';
-        wait for period_time*2;
-        rst <= '0';
-        wait;
-    end process;
-
-    sim_time_proc: process -- Marca o tempo total da simulação
-    begin
-        wait for 10 us;
-        finished <= '1';
-        wait;
-    end process sim_time_proc;
-
-    clk_process: process -- gera sinal de clock
-    begin
-        while finished /= '1' loop
-            clk <= '0';
-            wait for period_time/2;
-            clk <= '1';
-            wait for period_time/2;
-        end loop;
-        wait;
-    end process clk_process;
-
     opcode <= dado(16 downto 13);
 
     jump_to <= dado(12 downto 0);
@@ -112,18 +86,5 @@ begin
     wr_en <= '1' when estado = '0' else '0';
 
     next_pc <= to_unsigned(to_integer(jump_to), 24) when opcode = "1111" else data_in;
-
-
-    process
-	begin
-        wait for 100 ns;
-		rst <= '1';
-		wait for 200 ns;
-		rst <= '0';
-
-
-        wait for 1000 ns;
-		wait;	
-	end process;
 
 end architecture;

@@ -53,12 +53,14 @@ rom_e_estados:
 	ghdl -e soma1_pc
 	ghdl -a rom.vhd
 	ghdl -e rom
-	ghdl -a rom_e_estados.vhd
-	ghdl -e rom_e_estados
 	ghdl -a maquina_estados.vhd
 	ghdl -e maquina_estados
-	ghdl -r rom_e_estados --wave=rom_e_estados.ghw
-	gtkwave rom_e_estados.ghw
+	ghdl -a top_level.vhd
+	ghdl -e top_level
+	ghdl -a top_level_tb.vhd
+	ghdl -e top_level_tb
+	ghdl -r top_level_tb --wave=top_level_tb.ghw
+	gtkwave top_level_tb.ghw
 
 jump:
 	ghdl -a pc.vhd
