@@ -65,6 +65,7 @@ architecture a_top_level of top_level is
     end component;
         
 
+    signal wr_en_banco_reg, wr_en_pc : std_logic;
     signal endereco  : unsigned(23 downto 0);
     signal dado : unsigned(15 downto 0);
     
@@ -113,12 +114,13 @@ begin
 
     ula_calc : ula port map(
         selecao         => selecao                    
-        entrada1_numero => entrada1_numero
-        entrada2_numero => entrada2_numero 
+        entrada1_numero => reg1_leitura_saida
+        entrada2_numero => reg2_leitura_saida 
         saida_numero    => saida_numero                    
     );
 
-    wr_en <= '1' when estado = '0' else '0';
+    wr_en_pc <= '1' when estado = "00" else '0';
+    wr_en_banco_reg <= '0' when estado = "00" else '1';
 
 
 
