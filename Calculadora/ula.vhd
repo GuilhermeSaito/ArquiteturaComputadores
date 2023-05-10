@@ -11,8 +11,7 @@ entity ula is
         selecao                             : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
         entrada1_numero, entrada2_numero    : IN UNSIGNED(15 DOWNTO 0);
         saida_numero                        : OUT UNSIGNED(15 DOWNTO 0);
-        saida_maior_igual_bit               : OUT STD_LOGIC;
-        saida_valor_igual_bit               : OUT STD_LOGIC
+
     );
 end entity ula;
 
@@ -24,10 +23,5 @@ begin
                     entrada1_numero - entrada2_numero WHEN selecao = "01" else
                     "0000000000000000";
 
-    saida_maior_igual_bit <= '1' WHEN (entrada1_numero >= entrada2_numero) and (selecao = "10") else
-                             '0';
-
-    saida_valor_igual_bit <= '1' WHEN (entrada1_numero = entrada2_numero) and (selecao = "11") else
-                             '0';
 
 end architecture rtl;
