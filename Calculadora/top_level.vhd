@@ -21,6 +21,8 @@ architecture a_top_level of top_level is
     component pc is
     port(
         clk, wr_en, rst : in std_logic;
+        jump_flag : in std_logic;
+		jump_address : in unsigned(23 downto 0);
         data_in: in unsigned(23 downto 0);
         data_out: out unsigned(23 downto 0)
     );
@@ -98,6 +100,8 @@ architecture a_top_level of top_level is
     -- --------- Para o acumulador
     signal wr_en_acumulador : std_logic;
     signal data_in_acumulador, data_out_acumulador : unsigned(15 downto 0);
+    signal jump_flag : std_logic;
+    signal jump_address : unsigned(23 downto 0);
 
     -- Debug por enquanto
     signal op_code : unsigned(4 downto 0);
@@ -118,6 +122,8 @@ begin
 		clk => clk,
 		wr_en => wr_en_pc,
 		rst => rst,
+        jump_flag => jump_flag,
+		jump_address => jump_address,
 		data_in => data_in,
 		data_out => data_out
 	);
@@ -194,7 +200,11 @@ begin
     else '0';
 
 
-    -- --------------------- JUMP
-
+    -- --------------------- JUMP (foi alterado o componente pc)
+    jump_flag <= '1' when
+        op_code = "01001" or
+        op_code = "01100"
+    else '0';
+    jump_address <= resize(dado(11 downto 0), jump_address'length);
 
 end architecture;

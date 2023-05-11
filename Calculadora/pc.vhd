@@ -5,6 +5,8 @@ use ieee.numeric_std.all;
 entity pc is
 	port(
 		clk, wr_en, rst : in std_logic;
+		jump_flag : in std_logic;
+		jump_address : in unsigned(23 downto 0);
 		data_in: in unsigned(23 downto 0);
 		data_out: out unsigned(23 downto 0)
 	);
@@ -24,7 +26,11 @@ begin
 			data <= (others => '0');
         -- Como ele nao vai contar internamente, soh verificar se pode escrever e se estah na subida do clock
 		elsif (rising_edge(clk) and wr_en = '1') then
-			data <= data_in;
+			if jump_flag = '1' then
+				data <= jump_address;
+			else
+				data <= data_in;
+			end if;
 		end if;
 	end process;
 

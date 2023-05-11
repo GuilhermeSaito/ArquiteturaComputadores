@@ -43,6 +43,7 @@ architecture a_rom of rom is
     -- abaixo: casos omissos => (zero em todos os bits)
     others => (others=>'0')
  );
+ 
 begin
     process(clk)
     begin
