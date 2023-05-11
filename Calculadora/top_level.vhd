@@ -99,9 +99,9 @@ architecture a_top_level of top_level is
 
     -- --------- Para o acumulador
     signal wr_en_acumulador : std_logic;
-    signal data_in_acumulador, data_out_acumulador : unsigned(15 downto 0);
+    signal data_in_acumulador, data_out_acumulador : unsigned(15 downto 0) := (others => '0');
     signal jump_flag : std_logic;
-    signal jump_address : unsigned(23 downto 0);
+    signal jump_address : unsigned(23 downto 0) := (others => '0');
 
     -- Debug por enquanto
     signal op_code : unsigned(4 downto 0);
@@ -148,9 +148,9 @@ begin
 
     ula_calc : ula port map(
         selecao         => selecao,
-        entrada1_numero => reg1_leitura_saida,
-        entrada2_numero => reg2_leitura_saida,
-        saida_numero    => saida_numero                    
+        entrada1_numero => data_out_acumulador,
+        entrada2_numero => reg1_leitura_saida,
+        saida_numero    => data_in_acumulador                   
     );
 
     acumulador: reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_acumulador, data_in => data_in_acumulador, data_out => data_out_acumulador);
@@ -188,7 +188,7 @@ begin
         op_code = "01000" or
         op_code = "01010" or 
         op_code = "01011"
-    else data_in_acumulador;
+    else data_out_acumulador;
 
     wr_en_acumulador <= '1' when
         op_code = "00011" or 
@@ -206,5 +206,11 @@ begin
         op_code = "01100"
     else '0';
     jump_address <= resize(dado(11 downto 0), jump_address'length);
+
+
+    -- --------------------- Soma ou Subtracao
+    selecao <= "00" when op_code = "00100" else -- Soma
+               "01" when op_code = "00111" else -- Subtracao
+               "10";                            -- Do nothing
 
 end architecture;
