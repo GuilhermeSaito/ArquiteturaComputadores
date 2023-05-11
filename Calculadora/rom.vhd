@@ -5,37 +5,57 @@ use ieee.numeric_std.all;
 entity rom is
     port( clk : in std_logic;
     endereco : in unsigned(23 downto 0);
-    dado : out unsigned(15 downto 0)
+    dado : out unsigned(16 downto 0)
     );
 end entity;
 
 architecture a_rom of rom is
-    type mem is array (0 to 127) of unsigned(15 downto 0);
+    type mem is array (0 to 127) of unsigned(16 downto 0);
     constant conteudo_rom : mem := (
-    -- caso endereco => conteudo
-    -- Formato do binario: opcode_reg1_reg2_regdest_shift
-    -- Formato do binario: opcode_reg1_constante_regdest
-    -- Formato do binario: opcode_enderecoDestino
+    -- ------------------------------ Intrucoes arbitradas ------------------------------
+    -- O ACUMULADOR SERA O REGISTRADOR 8
 
-    -- 0000 = Nop
-    -- 0001 = Carregar registrador com constante
-    -- 0010 = Somar registrador com registrador
-    -- 0011 = Somar registrador com constante
-    -- 0100 = Subtrair registrador com registrador
-    -- 0101 = Subtrair registrador com constante
-    -- 0110 = Jump
-    -- 0111 = Atribuicao indireta <-- Como vai fazer
-    0  => B"0000_000_000_000_000",
-    1  => B"0001_000_000101_011",  -- Carrega R3 com 5
-    2  => B"0001_000_001000_100",  -- Carregar R4 com valor 8
-    3  => B"0010_011_100_101_000", -- Soma reg r3 e r4 para o r5
-    4  => B"0101_000_000001_101",  -- Subtrair 1 de r5
-    5  => B"0110_000000010100",    -- Salta para endereco 20
-    6  => B"0110_111_100_000_000",
-    7  => B"0111_000_000_000_000", 
-    8  => B"0000_000_000_000_000",
-    9  => B"0000_000_000_000_000",
-    10 => B"0000_000_000_000_000",
+    -- ------- Carregar registrador com constante
+    -- Formato do binario: opcode_regdestino_constante
+    -- ------- Somar e Subtrair
+    -- Formato do binario: opcode_acumulador_reg1 -- Carregar o valor do registrador no acumulador
+    -- Formato do binario: opcode_acumulador_reg1 -- Somar o valor do acumulador com o outro registrador e armazenar no acumulador
+    -- Formato do binario: opcode_reg1_acumulador -- Carregar o valor do acumulador no registrador
+    -- ------- Jump
+    -- Formato do binario: opcode_enderecoDestino
+    -- ------- Atribuir valor de 1 registrador para o outro
+    -- Formato do binario: opcode_acumulador_reg1 -- Atribui o valor do registrador para o acumulador
+    -- Formato do binario: opcode_reg1_acumulador -- Atribui o valor do acumulador para o registrador
+
+
+    -- 00000 = Nop
+    -- 00001 = Carregar registrador com constante (MOV $reg constante)
+    -- ------- Para somar precisa de 3 instrucoes (pq o processador usa acumulador)
+    -- 00010 = Carregar acumulador com o valor de registrador 1 (LD $acumulador, $registrador)
+    -- 00011 = Somar aucumulador com o outro registrador e armazenar no acumulador (ADD $acumulador, $registrador)
+    -- 00100 = Atribuir o resultado do acumulador para o outro registrador (LD $registrador, $acumulador)
+    -- ------- Para subtrair eh a msm coisa da soma, mas subtraindo
+    -- 00101 = Carregar acumulador com o valor de registrador 1 (LD $acumulador, $registrador)
+    -- 00110 = Subtrair aucumulador com o outro registrador e armazenar no acumulador (SUB $acumulador, $registrador)
+    -- 00111 = Atribuir o resultado do acumulador para o outro registrador (LD $registrador, $acumulador)
+    -- 01000 = Jump
+    -- ------- Para atribuir o valor de um registrador em outro
+    -- 01001 = Atribuir o valor de 1 registrador para o acumulador (LD $acumulador, $registrador)
+    -- 01010 = Atribuir o valor do acumulador para o outro registrador (LD $registrador, $acumulador)
+    -- ------------------------------ Intrucoes arbitradas ------------------------------
+
+    0  => B"00000000000000000",     -- Nop
+    1  => B"00001_000_000000101",   -- MOV $reg constante
+    2  => B"00010_000001000_000",   -- LD $acumulador, $registrador -- Soma
+    3  => B"00011_000001000_000",   -- ADD $acumulador, $registrador
+    4  => B"00100_000_000001000",   -- LD $registrador, $acumulador
+    5  => B"00101_000001000_000",   -- LD $acumulador, $registrador -- Subtracao
+    6  => B"00110_000001000_000",   -- SUB $acumulador, $registrador
+    7  => B"00111_000_000001000",   -- LD $registrador, $acumulador
+    8  => B"01000_000000010100",    -- Jump para instrucao 20
+    20 => B"01001_000001000_000", -- LD $acumulador, $registrador
+    21 => B"01010_000_000001000", -- LD $registrador, $acumulador
+    22  => B"01000_000000000011",    -- Jump para instrucao 3
     -- abaixo: casos omissos => (zero em todos os bits)
     others => (others=>'0')
  );
@@ -43,7 +63,7 @@ begin
     process(clk)
     begin
     if(rising_edge(clk)) then
-    dado <= conteudo_rom(to_integer(endereco));
+        dado <= conteudo_rom(to_integer(endereco));
     end if;
     end process;
 end architecture;
