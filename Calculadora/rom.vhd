@@ -27,35 +27,19 @@ architecture a_rom of rom is
     -- Formato do binario: opcode_acumulador_reg1 -- Atribui o valor do registrador para o acumulador
     -- Formato do binario: opcode_reg1_acumulador -- Atribui o valor do acumulador para o registrador
 
-
-    -- 00000 = Nop
-    -- 00001 = Carregar registrador com constante (MOV $reg constante)
-    -- ------- Para somar precisa de 3 instrucoes (pq o processador usa acumulador)
-    -- 00010 = Carregar acumulador com o valor de registrador 1 (LD $acumulador, $registrador)
-    -- 00011 = Somar aucumulador com o outro registrador e armazenar no acumulador (ADD $acumulador, $registrador)
-    -- 00100 = Atribuir o resultado do acumulador para o outro registrador (LD $registrador, $acumulador)
-    -- ------- Para subtrair eh a msm coisa da soma, mas subtraindo
-    -- 00101 = Carregar acumulador com o valor de registrador 1 (LD $acumulador, $registrador)
-    -- 00110 = Subtrair aucumulador com o outro registrador e armazenar no acumulador (SUB $acumulador, $registrador)
-    -- 00111 = Atribuir o resultado do acumulador para o outro registrador (LD $registrador, $acumulador)
-    -- 01000 = Jump
-    -- ------- Para atribuir o valor de um registrador em outro
-    -- 01001 = Atribuir o valor de 1 registrador para o acumulador (LD $acumulador, $registrador)
-    -- 01010 = Atribuir o valor do acumulador para o outro registrador (LD $registrador, $acumulador)
-    -- ------------------------------ Intrucoes arbitradas ------------------------------
-
     0  => B"00000000000000000",     -- Nop
-    1  => B"00001_000_000000101",   -- MOV $reg constante
-    2  => B"00010_000001000_000",   -- LD $acumulador, $registrador -- Soma
-    3  => B"00011_000001000_000",   -- ADD $acumulador, $registrador
-    4  => B"00100_000_000001000",   -- LD $registrador, $acumulador
-    5  => B"00101_000001000_000",   -- LD $acumulador, $registrador -- Subtracao
-    6  => B"00110_000001000_000",   -- SUB $acumulador, $registrador
-    7  => B"00111_000_000001000",   -- LD $registrador, $acumulador
-    8  => B"01000_000000010100",    -- Jump para instrucao 20
-    20 => B"01001_000001000_000", -- LD $acumulador, $registrador
-    21 => B"01010_000_000001000", -- LD $registrador, $acumulador
-    22  => B"01000_000000000011",    -- Jump para instrucao 3
+    1  => B"00001_011_000000101",   -- MOV $reg3 constante
+    2  => B"00010_100_000000101",   -- MOV $reg4 constante
+    3  => B"00011_000001000_011",   -- LD $acumulador, $reg3 -- Soma
+    4  => B"00100_000001000_100",   -- ADD $acumulador, $reg4
+    5 => B"00101_101_000001000",   -- LD $reg5, $acumulador
+    6  => B"00110_000001000_101",   -- LD $acumulador, $reg5 -- Subtracao
+    7  => B"00111_000001000_001",   -- SUB $acumulador, contante1
+    8  => B"01000_101_000001000",   -- LD $reg5, $acumulador
+    9  => B"01001_000000010100",    -- Jump para instrucao 20
+    20 => B"01010_000001000_000", -- LD $acumulador, $registrador
+    21 => B"01011_000_000001000", -- LD $registrador, $acumulador
+    22 => B"01100_000000000011",    -- Jump para instrucao 3
     -- abaixo: casos omissos => (zero em todos os bits)
     others => (others=>'0')
  );

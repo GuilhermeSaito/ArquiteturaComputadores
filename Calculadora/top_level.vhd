@@ -18,20 +18,20 @@ architecture a_top_level of top_level is
     );
     end component;
 
-    component pc is
-    port(
-        clk, wr_en, rst : in std_logic;
-        data_in: in unsigned(23 downto 0);
-        data_out: out unsigned(23 downto 0)
-    );
-    end component;
+    -- component pc is
+    -- port(
+    --     clk, wr_en, rst : in std_logic;
+    --     data_in: in unsigned(23 downto 0);
+    --     data_out: out unsigned(23 downto 0)
+    -- );
+    -- end component;
 
-    component soma1_pc is 
-    port (
-        pc_now: in unsigned(23 downto 0);
-        pc_next: out unsigned(23 downto 0)
-    );
-    end component;
+    -- component soma1_pc is 
+    -- port (
+    --     pc_now: in unsigned(23 downto 0);
+    --     pc_next: out unsigned(23 downto 0)
+    -- );
+    -- end component;
 
     component maq_estados is
         port(
@@ -84,6 +84,9 @@ architecture a_top_level of top_level is
     signal selecao : STD_LOGIC_VECTOR(1 DOWNTO 0);
     signal saida_numero : UNSIGNED(15 DOWNTO 0);
 
+    -- Debug por enquanto
+    signal op_code : unsigned(4 downto 0);
+
 begin
     rom_test : rom port map(
         clk => clk,
@@ -91,18 +94,18 @@ begin
         dado => dado 
     );
 
-    pc_sum : soma1_pc port map(
-		pc_now => data_out,
-		pc_next => data_in
-	);
+    -- pc_sum : soma1_pc port map(
+	-- 	pc_now => data_out,
+	-- 	pc_next => data_in
+	-- );
 
-	pc_test : pc port map(
-		clk => clk,
-		wr_en => wr_en_pc,
-		rst => rst,
-		data_in => data_in,
-		data_out => data_out
-	);
+	-- pc_test : pc port map(
+	-- 	clk => clk,
+	-- 	wr_en => wr_en_pc,
+	-- 	rst => rst,
+	-- 	data_in => data_in,
+	-- 	data_out => data_out
+	-- );
 
     maquina_estados : maq_estados port map(
         clk => clk,
@@ -115,7 +118,7 @@ begin
         reg2_leitura       => reg2_leitura,
         data_in            => data_in_banco,
         reg_escrita        => reg_escrita,
-        wr_en    => wr_en_banco_reg,
+        wr_en              => wr_en_banco_reg,
         clk                => clk,
         rst                => rst ,
         reg1_leitura_saida => reg1_leitura_saida,
@@ -131,6 +134,18 @@ begin
 
     wr_en_pc <= '1' when estado = "00" else '0';
     wr_en_banco_reg <= '0' when estado = "00" else '1';
+
+    
+    -- --------Somente para ver se cada componente estah funcionando
+    data_out <= to_unsigned(1, data_out'length);
+
+    -- Pega somente os opcodes necessarios
+    op_code <= dado(16 downto 12);
+
+    -- Caso o op_code for = "00001", entao eh para atribuir um valor para o registrador
+    reg_escrita <= dado(11 downto 9) when op_code = "00001" else (others => '0');
+    data_in_banco <= resize(dado(8 downto 0), data_in_banco'length) when op_code = "00001" else (others => '0');
+
 
 
 
