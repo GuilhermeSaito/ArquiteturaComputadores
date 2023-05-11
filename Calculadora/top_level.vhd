@@ -18,20 +18,20 @@ architecture a_top_level of top_level is
     );
     end component;
 
-    -- component pc is
-    -- port(
-    --     clk, wr_en, rst : in std_logic;
-    --     data_in: in unsigned(23 downto 0);
-    --     data_out: out unsigned(23 downto 0)
-    -- );
-    -- end component;
+    component pc is
+    port(
+        clk, wr_en, rst : in std_logic;
+        data_in: in unsigned(23 downto 0);
+        data_out: out unsigned(23 downto 0)
+    );
+    end component;
 
-    -- component soma1_pc is 
-    -- port (
-    --     pc_now: in unsigned(23 downto 0);
-    --     pc_next: out unsigned(23 downto 0)
-    -- );
-    -- end component;
+    component soma1_pc is 
+    port (
+        pc_now: in unsigned(23 downto 0);
+        pc_next: out unsigned(23 downto 0)
+    );
+    end component;
 
     component maq_estados is
         port(
@@ -64,6 +64,17 @@ architecture a_top_level of top_level is
             saida_numero                        : OUT UNSIGNED(15 DOWNTO 0)
         );
     end component;
+
+    -- ----- Para fazer o acumulador
+    component reg16bits 
+    port( 
+        clk : in std_logic;
+        rst : in std_logic;
+        wr_en : in std_logic;
+        data_in : in unsigned(15 downto 0);
+        data_out : out unsigned(15 downto 0)
+    );
+    end component;
         
 
     signal wr_en_banco_reg, wr_en_pc : std_logic;
@@ -84,6 +95,10 @@ architecture a_top_level of top_level is
     signal selecao : STD_LOGIC_VECTOR(1 DOWNTO 0);
     signal saida_numero : UNSIGNED(15 DOWNTO 0);
 
+    -- --------- Para o acumulador
+    signal wr_en_acumulador : std_logic;
+    signal data_in_acumulador, data_out_acumulador : unsigned(15 downto 0);
+
     -- Debug por enquanto
     signal op_code : unsigned(4 downto 0);
 
@@ -94,18 +109,18 @@ begin
         dado => dado 
     );
 
-    -- pc_sum : soma1_pc port map(
-	-- 	pc_now => data_out,
-	-- 	pc_next => data_in
-	-- );
+    pc_sum : soma1_pc port map(
+		pc_now => data_out,
+		pc_next => data_in
+	);
 
-	-- pc_test : pc port map(
-	-- 	clk => clk,
-	-- 	wr_en => wr_en_pc,
-	-- 	rst => rst,
-	-- 	data_in => data_in,
-	-- 	data_out => data_out
-	-- );
+	pc_test : pc port map(
+		clk => clk,
+		wr_en => wr_en_pc,
+		rst => rst,
+		data_in => data_in,
+		data_out => data_out
+	);
 
     maquina_estados : maq_estados port map(
         clk => clk,
@@ -132,21 +147,54 @@ begin
         saida_numero    => saida_numero                    
     );
 
+    acumulador: reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_acumulador, data_in => data_in_acumulador, data_out => data_out_acumulador);
+
     wr_en_pc <= '1' when estado = "00" else '0';
     wr_en_banco_reg <= '0' when estado = "00" else '1';
 
     
     -- --------Somente para ver se cada componente estah funcionando
-    data_out <= to_unsigned(1, data_out'length);
+    -- data_out <= to_unsigned(2, data_out'length);
 
     -- Pega somente os opcodes necessarios
     op_code <= dado(16 downto 12);
 
-    -- Caso o op_code for = "00001", entao eh para atribuir um valor para o registrador
-    reg_escrita <= dado(11 downto 9) when op_code = "00001" else (others => '0');
-    data_in_banco <= resize(dado(8 downto 0), data_in_banco'length) when op_code = "00001" else (others => '0');
+    -- --------------------- MOV
+    -- Caso o op_code for = "00001" ou "00010", entao eh para atribuir um valor para o registrador
+    reg_escrita <= dado(11 downto 9) when op_code = "00001" or op_code = "00010" else (others => '0');
+    data_in_banco <= resize(dado(8 downto 0), data_in_banco'length) when op_code = "00001" or op_code = "00010" else (others => '0');
+
+    -- --------------------- LD
+    -- Caso o op_code for = "00001" ou "00010", entao eh para atribuir um valor para o registrador
+    reg1_leitura <= dado(2 downto 0) when 
+            op_code = "00011" or 
+            op_code = "00101" or
+            op_code = "00110" or 
+            op_code = "01000" or
+            op_code = "01010" or 
+            op_code = "01011"
+        else (others => '0');
+
+    data_in_acumulador <= reg1_leitura_saida when 
+        op_code = "00011" or 
+        op_code = "00101" or
+        op_code = "00110" or 
+        op_code = "01000" or
+        op_code = "01010" or 
+        op_code = "01011"
+    else data_in_acumulador;
+
+    wr_en_acumulador <= '1' when
+        op_code = "00011" or 
+        op_code = "00101" or
+        op_code = "00110" or 
+        op_code = "01000" or
+        op_code = "01010" or 
+        op_code = "01011"
+    else '0';
 
 
+    -- --------------------- JUMP
 
 
 end architecture;

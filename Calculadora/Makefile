@@ -20,7 +20,6 @@ all:
 	ghdl -r top_level_tb --wave=top_level_tb.ghw
 	gtkwave top_level_tb.ghw
 
-
 clean:
 	rm -f *.cf
 	rm -f *.ghw
