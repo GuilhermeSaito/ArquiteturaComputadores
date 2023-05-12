@@ -1,0 +1,45 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Fri May 12 19:11:41 2023
+[*]
+[dumpfile] "/home/arudina/Desktop/ArquiteturaComputadores/Calculadora/top_level_tb.ghw"
+[dumpfile_mtime] "Fri May 12 19:06:26 2023"
+[dumpfile_size] 8693
+[savefile] "/home/arudina/Desktop/ArquiteturaComputadores/Calculadora/simulation.gtkw"
+[timestart] 512100000
+[size] 1846 1016
+[pos] -51 -51
+*-27.500282 1309400000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.top_level_tb.
+[treeopen] top.top_level_tb.top_level_test.
+[treeopen] top.top_level_tb.top_level_test.banco_regis.
+[treeopen] top.top_level_tb.top_level_test.banco_regis.regs4.
+[treeopen] top.top_level_tb.top_level_test.banco_regis.regs5.
+[sst_width] 350
+[signals_width] 304
+[sst_expanded] 1
+[sst_vpaned_height] 579
+@28
+top.top_level_tb.clk
+top.top_level_tb.rst
+@22
+#{top.top_level_tb.top_level_test.data_in_acumulador[15:0]} top.top_level_tb.top_level_test.data_in_acumulador[15] top.top_level_tb.top_level_test.data_in_acumulador[14] top.top_level_tb.top_level_test.data_in_acumulador[13] top.top_level_tb.top_level_test.data_in_acumulador[12] top.top_level_tb.top_level_test.data_in_acumulador[11] top.top_level_tb.top_level_test.data_in_acumulador[10] top.top_level_tb.top_level_test.data_in_acumulador[9] top.top_level_tb.top_level_test.data_in_acumulador[8] top.top_level_tb.top_level_test.data_in_acumulador[7] top.top_level_tb.top_level_test.data_in_acumulador[6] top.top_level_tb.top_level_test.data_in_acumulador[5] top.top_level_tb.top_level_test.data_in_acumulador[4] top.top_level_tb.top_level_test.data_in_acumulador[3] top.top_level_tb.top_level_test.data_in_acumulador[2] top.top_level_tb.top_level_test.data_in_acumulador[1] top.top_level_tb.top_level_test.data_in_acumulador[0]
+#{top.top_level_tb.top_level_test.data_out_acumulador[15:0]} top.top_level_tb.top_level_test.data_out_acumulador[15] top.top_level_tb.top_level_test.data_out_acumulador[14] top.top_level_tb.top_level_test.data_out_acumulador[13] top.top_level_tb.top_level_test.data_out_acumulador[12] top.top_level_tb.top_level_test.data_out_acumulador[11] top.top_level_tb.top_level_test.data_out_acumulador[10] top.top_level_tb.top_level_test.data_out_acumulador[9] top.top_level_tb.top_level_test.data_out_acumulador[8] top.top_level_tb.top_level_test.data_out_acumulador[7] top.top_level_tb.top_level_test.data_out_acumulador[6] top.top_level_tb.top_level_test.data_out_acumulador[5] top.top_level_tb.top_level_test.data_out_acumulador[4] top.top_level_tb.top_level_test.data_out_acumulador[3] top.top_level_tb.top_level_test.data_out_acumulador[2] top.top_level_tb.top_level_test.data_out_acumulador[1] top.top_level_tb.top_level_test.data_out_acumulador[0]
+#{top.top_level_tb.top_level_test.op_code[4:0]} top.top_level_tb.top_level_test.op_code[4] top.top_level_tb.top_level_test.op_code[3] top.top_level_tb.top_level_test.op_code[2] top.top_level_tb.top_level_test.op_code[1] top.top_level_tb.top_level_test.op_code[0]
+@28
+#{top.top_level_tb.top_level_test.selecao[1:0]} top.top_level_tb.top_level_test.selecao[1] top.top_level_tb.top_level_test.selecao[0]
+@23
+#{top.top_level_tb.top_level_test.reg1_leitura_saida[15:0]} top.top_level_tb.top_level_test.reg1_leitura_saida[15] top.top_level_tb.top_level_test.reg1_leitura_saida[14] top.top_level_tb.top_level_test.reg1_leitura_saida[13] top.top_level_tb.top_level_test.reg1_leitura_saida[12] top.top_level_tb.top_level_test.reg1_leitura_saida[11] top.top_level_tb.top_level_test.reg1_leitura_saida[10] top.top_level_tb.top_level_test.reg1_leitura_saida[9] top.top_level_tb.top_level_test.reg1_leitura_saida[8] top.top_level_tb.top_level_test.reg1_leitura_saida[7] top.top_level_tb.top_level_test.reg1_leitura_saida[6] top.top_level_tb.top_level_test.reg1_leitura_saida[5] top.top_level_tb.top_level_test.reg1_leitura_saida[4] top.top_level_tb.top_level_test.reg1_leitura_saida[3] top.top_level_tb.top_level_test.reg1_leitura_saida[2] top.top_level_tb.top_level_test.reg1_leitura_saida[1] top.top_level_tb.top_level_test.reg1_leitura_saida[0]
+@22
+#{top.top_level_tb.top_level_test.banco_regis.regs5.data_in[15:0]} top.top_level_tb.top_level_test.banco_regis.regs5.data_in[15] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[14] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[13] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[12] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[11] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[10] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[9] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[8] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[7] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[6] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[5] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[4] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[3] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[2] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[1] top.top_level_tb.top_level_test.banco_regis.regs5.data_in[0]
+#{top.top_level_tb.top_level_test.banco_regis.regs5.data_out[15:0]} top.top_level_tb.top_level_test.banco_regis.regs5.data_out[15] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[14] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[13] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[12] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[11] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[10] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[9] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[8] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[7] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[6] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[5] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[4] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[3] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[2] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[1] top.top_level_tb.top_level_test.banco_regis.regs5.data_out[0]
+#{top.top_level_tb.top_level_test.banco_regis.regs4.data_in[15:0]} top.top_level_tb.top_level_test.banco_regis.regs4.data_in[15] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[14] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[13] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[12] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[11] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[10] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[9] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[8] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[7] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[6] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[5] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[4] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[3] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[2] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[1] top.top_level_tb.top_level_test.banco_regis.regs4.data_in[0]
+#{top.top_level_tb.top_level_test.banco_regis.regs4.data_out[15:0]} top.top_level_tb.top_level_test.banco_regis.regs4.data_out[15] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[14] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[13] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[12] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[11] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[10] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[9] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[8] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[7] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[6] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[5] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[4] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[3] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[2] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[1] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[0]
+@28
+#{top.top_level_tb.top_level_test.estado[1:0]} top.top_level_tb.top_level_test.estado[1] top.top_level_tb.top_level_test.estado[0]
+top.top_level_tb.top_level_test.wr_en_banco_reg
+top.top_level_tb.top_level_test.wr_en_acumulador
+top.top_level_tb.rst
+[pattern_trace] 1
+[pattern_trace] 0

@@ -99,7 +99,7 @@ architecture a_top_level of top_level is
 
     -- --------- Para o acumulador
     signal wr_en_acumulador : std_logic;
-    signal data_in_acumulador, data_out_acumulador : unsigned(15 downto 0) := (others => '0');
+    signal data_in_acumulador, data_out_acumulador, data_in_ac : unsigned(15 downto 0) := (others => '0');
     signal jump_flag : std_logic;
     signal jump_address : unsigned(23 downto 0) := (others => '0');
 
@@ -150,10 +150,16 @@ begin
         selecao         => selecao,
         entrada1_numero => data_out_acumulador,
         entrada2_numero => reg1_leitura_saida,
-        saida_numero    => data_in_acumulador                   
+        saida_numero    => data_in_ac                   
     );
 
-    acumulador: reg16bits port map(clk => clk, rst => rst, wr_en => wr_en_acumulador, data_in => data_in_acumulador, data_out => data_out_acumulador);
+    acumulador: reg16bits port map(
+        clk => clk,
+        rst => rst,
+        wr_en => wr_en_acumulador,
+        data_in => data_in_acumulador,
+        data_out => data_out_acumulador
+    );
 
     wr_en_pc <= '1' when estado = "00" else '0';
     wr_en_banco_reg <= '0' when estado = "00" else '1';
@@ -173,37 +179,24 @@ begin
     -- --------------------- LD
     -- Caso o op_code for = "00001" ou "00010", entao eh para atribuir um valor para o registrador
     reg1_leitura <= dado(2 downto 0) when 
-            op_code = "00011" or 
-            op_code = "00101" or
-            op_code = "00110" or 
-            op_code = "01000" or
-            op_code = "01010" or 
-            op_code = "01011"
+            op_code = "00011"
         else (others => '0');
 
-    data_in_acumulador <= reg1_leitura_saida when 
-        op_code = "00011" or 
-        op_code = "00101" or
-        op_code = "00110" or 
-        op_code = "01000" or
-        op_code = "01010" or 
-        op_code = "01011"
+    data_in_acumulador <= data_in_ac when 
+        op_code = "00100" or
+        op_code = "00111"
+    else reg1_leitura_saida when
+        op_code = "00011"
     else data_out_acumulador;
 
     wr_en_acumulador <= '1' when
-        op_code = "00011" or 
-        op_code = "00101" or
-        op_code = "00110" or 
-        op_code = "01000" or
-        op_code = "01010" or 
-        op_code = "01011"
+        op_code = "00011"
     else '0';
 
 
     -- --------------------- JUMP (foi alterado o componente pc)
     jump_flag <= '1' when
-        op_code = "01001" or
-        op_code = "01100"
+        op_code = "01001"
     else '0';
     jump_address <= resize(dado(11 downto 0), jump_address'length);
 
