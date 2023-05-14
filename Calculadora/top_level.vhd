@@ -36,14 +36,14 @@ architecture a_top_level of top_level is
     end component;
 
     component maq_estados is
-        port(
-            clk, rst: in STD_LOGIC;
-            estado: out unsigned(1 downto 0)
-        );
+    port(
+        clk, rst: in STD_LOGIC;
+        estado: out unsigned(1 downto 0)
+    );
     end component;
 
     component banco_reg is
-        port(
+    port(
         -- Qual registrador utilizar, considerando do s0 a s7, entao 000 = s0 e 111 = s7
         reg1_leitura : IN UNSIGNED(2 DOWNTO 0);
         reg2_leitura : IN UNSIGNED(2 DOWNTO 0);
@@ -56,19 +56,19 @@ architecture a_top_level of top_level is
         -- Saida do banco de registradores
         reg1_leitura_saida : OUT UNSIGNED(15 DOWNTO 0);
         reg2_leitura_saida : OUT UNSIGNED(15 DOWNTO 0)
-        );
+    );
     end component;
 
     component ula is 
-        port(
-            selecao                             : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-            entrada1_numero, entrada2_numero    : IN UNSIGNED(15 DOWNTO 0);
-            saida_numero                        : OUT UNSIGNED(15 DOWNTO 0)
-        );
+    port(
+        selecao                             : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+        entrada1_numero, entrada2_numero    : IN UNSIGNED(15 DOWNTO 0);
+        saida_numero                        : OUT UNSIGNED(15 DOWNTO 0)
+    );
     end component;
 
     -- ----- Para fazer o acumulador
-    component reg16bits 
+    component reg16bits is
     port( 
         clk : in std_logic;
         rst : in std_logic;
@@ -77,11 +77,19 @@ architecture a_top_level of top_level is
         data_out : out unsigned(15 downto 0)
     );
     end component;
+
+    component reg_instrucao is
+    port( 
+        saida_rom : IN unsigned(16 downto 0);
+        clk : in std_logic;
+        saida_reg_instrucao : OUT unsigned(16 downto 0)
+    );
+    end component;
         
 
     signal wr_en_banco_reg, wr_en_pc : std_logic;
     signal endereco  : unsigned(23 downto 0);
-    signal dado : unsigned(16 downto 0);
+    signal dado, saida_instrucao : unsigned(16 downto 0);
     
     signal data_in  : unsigned(23 downto 0) := (others => '0');
     signal data_in_banco  : unsigned(15 downto 0) := (others => '0');
@@ -96,6 +104,8 @@ architecture a_top_level of top_level is
     signal reg2_leitura_saida : UNSIGNED(15 DOWNTO 0);
     signal selecao : STD_LOGIC_VECTOR(1 DOWNTO 0);
     signal saida_numero : UNSIGNED(15 DOWNTO 0);
+
+    signal entrada2_ula : UNSIGNED(15 DOWNTO 0);
 
     -- --------- Para o acumulador
     signal wr_en_acumulador : std_logic;
@@ -149,11 +159,11 @@ begin
     ula_calc : ula port map(
         selecao         => selecao,
         entrada1_numero => data_out_acumulador,
-        entrada2_numero => reg1_leitura_saida,
+        entrada2_numero => entrada2_ula,
         saida_numero    => data_in_ac                   
     );
 
-    acumulador: reg16bits port map(
+    acumulador : reg16bits port map(
         clk => clk,
         rst => rst,
         wr_en => wr_en_acumulador,
@@ -161,8 +171,14 @@ begin
         data_out => data_out_acumulador
     );
 
+    instr : reg_instrucao port map(
+        saida_rom => dado,
+        clk => clk,
+        saida_reg_instrucao => saida_instrucao
+    );
+
     wr_en_pc <= '1' when estado = "00" else '0';
-    wr_en_banco_reg <= '0' when estado = "00" else '1';
+    wr_en_banco_reg <= '1' when estado = "10" else '0';
 
     
     -- --------Somente para ver se cada componente estah funcionando
@@ -172,38 +188,52 @@ begin
     op_code <= dado(16 downto 12);
 
     -- --------------------- MOV
-    -- Caso o op_code for = "00001" ou "00010", entao eh para atribuir um valor para o registrador
-    reg_escrita <= dado(11 downto 9) when op_code = "00001" or op_code = "00010" else (others => '0');
-    data_in_banco <= resize(dado(8 downto 0), data_in_banco'length) when op_code = "00001" or op_code = "00010" else (others => '0');
+    -- Caso o op_code MOV ou Atribuir o acumulador para algum registrador, entao eh para atribuir um valor para o registrador
+    reg_escrita <= 
+        saida_instrucao(11 downto 9) when op_code = "00001" else
+        saida_instrucao(2 downto 0) when op_code = "00110" else
+        (others => '0');
+    -- O banco de registradores vai receber os dados quando for
+    data_in_banco <= 
+        resize(saida_instrucao(8 downto 0), data_in_banco'length) when op_code = "00001"  else -- constante = mov
+        data_out_acumulador when op_code = "00110" else
+        (others => '0');
 
     -- --------------------- LD
     -- Caso o op_code for = "00001" ou "00010", entao eh para atribuir um valor para o registrador
-    reg1_leitura <= dado(2 downto 0) when 
-            op_code = "00011"
+    reg1_leitura <= saida_instrucao(2 downto 0) when   -- Precisa atualizar qual registrador sera lido do banco de registradores quando
+            op_code = "00010" or    -- For um ld
+            op_code = "00011" or    -- soma
+            op_code = "00100"       -- Ou subtracao
         else (others => '0');
 
     data_in_acumulador <= data_in_ac when 
-        op_code = "00100" or
-        op_code = "00111"
+        op_code = "00011" or
+        op_code = "00100"
     else reg1_leitura_saida when
-        op_code = "00011"
+        op_code = "00010"
     else data_out_acumulador;
 
-    wr_en_acumulador <= '1' when
-        op_code = "00011"
+    wr_en_acumulador <= '1' when -- Precisa atualizar o acumulador quando for
+        (op_code = "00010" or     -- ld
+        op_code  = "00011" or     -- soma
+        op_code  = "00100") and    -- ou subtracao
+        estado = "10"             -- E estiver no estado de EXECUTE
     else '0';
 
+    entrada2_ula <= resize(saida_instrucao(2 downto 0), entrada2_ula'length) when op_code = "00100" else
+        reg1_leitura_saida;
 
     -- --------------------- JUMP (foi alterado o componente pc)
     jump_flag <= '1' when
-        op_code = "01001"
+        op_code = "00101"
     else '0';
-    jump_address <= resize(dado(11 downto 0), jump_address'length);
+    jump_address <= resize(saida_instrucao(11 downto 0), jump_address'length);
 
 
     -- --------------------- Soma ou Subtracao
-    selecao <= "00" when op_code = "00100" else -- Soma
-               "01" when op_code = "00111" else -- Subtracao
+    selecao <= "00" when op_code = "00011" else -- Soma
+               "01" when op_code = "00100" else -- Subtracao
                "10";                            -- Do nothing
 
 end architecture;

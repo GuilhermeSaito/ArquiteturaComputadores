@@ -3,6 +3,10 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
+-- Fetch = 00 = Atualiza o PC => Le o dado da ROM => Armazena no reg de instrucao
+-- Decode = 01 = Prepara o op code e deixa os dados tudo na boquinha
+-- Execute = 10 = Da o write enable em tudo o que for necessario para executar
+
 entity maq_estados is
     port( 
         clk,rst: in std_logic;

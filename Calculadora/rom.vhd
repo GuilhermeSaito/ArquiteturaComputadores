@@ -28,18 +28,18 @@ architecture a_rom of rom is
     -- Formato do binario: opcode_reg1_acumulador -- Atribui o valor do acumulador para o registrador
 
     0  => B"00000000000000000",     -- Nop
-    1  => B"00001_011_000000101",   -- MOV $reg3 constante
-    2  => B"00001_100_000001000",   -- MOV $reg4 constante
-    3  => B"00011_000001000_011",   -- LD $acumulador, $reg3 -- Soma
-    4  => B"00100_000001000_100",   -- ADD $acumulador, $reg4
-    5  => B"00011_000001000_101",   -- LD $acumulador, $reg5
-    6  => B"00011_000001000_101",   -- LD $acumulador, $reg5 -- Subtracao
-    7  => B"00111_000001000_001",   -- SUB $acumulador, contante1
-    8  => B"00011_000001000_101",   -- LD $acumulador, $reg5
-    9  => B"01001_000000010100",    -- Jump para instrucao 20
-    20 => B"00011_000001000_000", -- LD $acumulador, $registrador
-    21 => B"00011_000001000_000", -- LD $acumulador, $registrador
-    22 => B"01001_000000000011",    -- Jump para instrucao 3
+    1  => B"00001_011_000000101",   -- MOV $reg3 5
+    2  => B"00001_100_000001000",   -- MOV $reg4 8
+    3  => B"00010_000001000_011",   -- LD $acumulador, $reg3 -- Soma (comeco)
+    4  => B"00011_000001000_100",   -- ADD $acumulador, $reg4
+    5  => B"00110_000001000_101",   -- LD $acumulador, $reg5    -- Atribui o valor do acumulador no registrador
+    6  => B"00010_000001000_101",   -- LD $acumulador, $reg5 -- Subtracao (comeco)
+    7  => B"00100_000001000_001",   -- SUB $acumulador, contante1
+    8  => B"00110_000001000_101",   -- LD $acumulador, $reg5    -- Atribui o valor do acumulador no registrador
+    9  => B"00101_000000010100",    -- Jump para instrucao 20
+    20 => B"00010_000001000_101",   -- LD $acumulador, $reg5
+    21 => B"00110_000001000_011",   -- LD $acumulador, $reg3    -- Atribui o valor do acumulador no registrador
+    22 => B"00101_000000000011",    -- Jump para instrucao 3
     -- abaixo: casos omissos => (zero em todos os bits)
     others => (others=>'0')
  );

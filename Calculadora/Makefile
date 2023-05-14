@@ -3,6 +3,8 @@ all:
 	ghdl -e reg16bits
 	ghdl -a soma1_pc.vhd
 	ghdl -e soma1_pc
+	ghdl -a reg_instrucao.vhd
+	ghdl -e reg_instrucao
 	ghdl -a pc.vhd
 	ghdl -e pc
 	ghdl -a maq_estados.vhd
