@@ -22,6 +22,7 @@ architecture a_top_level of top_level is
     port(
         clk, wr_en, rst : in std_logic;
         jump_flag : in std_logic;
+        jump_condicional_flag : in std_logic;
 		jump_address : in unsigned(23 downto 0);
         data_in: in unsigned(23 downto 0);
         data_out: out unsigned(23 downto 0)
@@ -112,6 +113,7 @@ architecture a_top_level of top_level is
     signal data_in_acumulador, data_out_acumulador, data_in_ac : unsigned(15 downto 0) := (others => '0');
     signal jump_flag : std_logic;
     signal jump_address : unsigned(23 downto 0) := (others => '0');
+    signal jump_cond_flag : std_logic;
 
     -- Debug por enquanto
     signal op_code : unsigned(4 downto 0);
@@ -133,6 +135,7 @@ begin
 		wr_en => wr_en_pc,
 		rst => rst,
         jump_flag => jump_flag,
+        jump_condicional_flag => jump_cond_flag,
 		jump_address => jump_address,
 		data_in => data_in,
 		data_out => data_out
@@ -209,7 +212,8 @@ begin
 
     data_in_acumulador <= data_in_ac when 
         op_code = "00011" or
-        op_code = "00100"
+        op_code = "00100" or
+        op_code = "00111"
     else reg1_leitura_saida; --when
     --    op_code = "00010"
     --else data_out_acumulador;
@@ -217,12 +221,15 @@ begin
     wr_en_acumulador <= '1' when -- Precisa atualizar o acumulador quando for
         (op_code = "00010" or     -- ld
         op_code  = "00011" or     -- soma
-        op_code  = "00100") and    -- ou subtracao
+        op_code  = "00100" or     -- subtracao
+        op_code  = "00111") and    -- ou soma constante
         estado = "10"             -- E estiver no estado de EXECUTE
     else '0';
 
-    entrada2_ula <= resize(saida_instrucao(2 downto 0), entrada2_ula'length) when op_code = "00100" else
-        reg1_leitura_saida;
+    entrada2_ula <= resize(saida_instrucao(2 downto 0), entrada2_ula'length) when
+        op_code = "00100" or
+        op_code = "00111"
+        else reg1_leitura_saida;
 
     -- --------------------- JUMP (foi alterado o componente pc)
     jump_flag <= '1' when
@@ -230,10 +237,16 @@ begin
     else '0';
     jump_address <= resize(saida_instrucao(11 downto 0), jump_address'length);
 
+    -- --------------------- JUMP CONDICIONAL (foi alterado o componente pc)
+    jump_cond_flag <= '1' when
+        op_code = "01000"
+    else '0';
 
     -- --------------------- Soma ou Subtracao
-    selecao <= "00" when op_code = "00011" else -- Soma
+    selecao <= "00" when op_code = "00011" or op_code = "00111" else -- Soma
                "01" when op_code = "00100" else -- Subtracao
                "10";                            -- Do nothing
+
+    
 
 end architecture;

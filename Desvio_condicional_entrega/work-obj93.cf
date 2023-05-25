@@ -1,0 +1,34 @@
+v 4
+file . "top_level_tb.vhd" "c3f17e58e2228cc881c7e193585e592ae836a87e" "20230525030950.421":
+  entity top_level_tb at 1( 0) + 0 on 1155;
+  architecture a_top_level_tb of top_level_tb at 8( 106) + 0 on 1156;
+file . "ula.vhd" "d50c93e188b4f29ffe6b7098c654ba59c2300bd4" "20230525030950.304":
+  entity ula at 1( 0) + 0 on 1151;
+  architecture rtl of ula at 15( 388) + 0 on 1152;
+file . "banco_reg.vhd" "b51a53c1f980e62da365ecba54c6008bb8853a9e" "20230525030950.196":
+  entity banco_reg at 1( 0) + 0 on 1147;
+  architecture a_banco_reg of banco_reg at 22( 689) + 0 on 1148;
+file . "pc.vhd" "75f7b295c21bbdaab4da5949d24b9ae65c5c1558" "20230525030950.094":
+  entity pc at 1( 0) + 0 on 1143;
+  architecture a_pc of pc at 16( 327) + 0 on 1144;
+file . "reg16bits.vhd" "c19f7660f8f159915beb0d62789588d4b9225bee" "20230525030949.939":
+  entity reg16bits at 1( 0) + 0 on 1137;
+  architecture a_reg16bits of reg16bits at 15( 296) + 0 on 1138;
+file . "soma1_pc.vhd" "3b0654a9eeb1628f49bfa84bc8701ec46e7dcebe" "20230525030949.991":
+  entity soma1_pc at 1( 0) + 0 on 1139;
+  architecture a_soma1_pc of soma1_pc at 14( 238) + 0 on 1140;
+file . "maq_estados.vhd" "3775a19d3b6ba356d83e582b582f4f75f52f1787" "20230525030950.146":
+  entity maq_estados at 1( 0) + 0 on 1145;
+  architecture a_maq_estados of maq_estados at 17( 427) + 0 on 1146;
+file . "rom.vhd" "3f943f2dc1679baaa19b95435ed7235da6c9953d" "20230525030950.252":
+  entity rom at 1( 0) + 0 on 1149;
+  architecture a_rom of rom at 12( 212) + 0 on 1150;
+file . "top_level.vhd" "459073453a0d6a12766879a6f514b34b065595d9" "20230525030950.354":
+  entity top_level at 1( 0) + 0 on 1153;
+  architecture a_top_level of top_level at 11( 153) + 0 on 1154;
+file . "acumulador.vhd" "7d5aa52b7165af895b899524a1c28f6412fbb6d9" "20230512182940.597":
+  entity acumulador at 1( 0) + 0 on 241;
+  architecture a_acumulador of acumulador at 15( 303) + 0 on 242;
+file . "reg_instrucao.vhd" "0353435460a0a9d8dd6b2fa9ae8cbc77743347a3" "20230525030950.042":
+  entity reg_instrucao at 1( 0) + 0 on 1141;
+  architecture a_reg_instrucao of reg_instrucao at 14( 298) + 0 on 1142;

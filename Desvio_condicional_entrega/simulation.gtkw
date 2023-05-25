@@ -1,0 +1,53 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Thu May 25 02:52:16 2023
+[*]
+[dumpfile] "/home/arudina/Desktop/ArquiteturaComputadores/Desvio_condicional_entrega/top_level_tb.ghw"
+[dumpfile_mtime] "Thu May 25 02:47:24 2023"
+[dumpfile_size] 8336
+[savefile] "/home/arudina/Desktop/ArquiteturaComputadores/Desvio_condicional_entrega/simulation.gtkw"
+[timestart] 0
+[size] 1846 1016
+[pos] -201 -201
+*-29.723940 2411000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.top_level_tb.
+[treeopen] top.top_level_tb.top_level_test.
+[treeopen] top.top_level_tb.top_level_test.acumulador.
+[treeopen] top.top_level_tb.top_level_test.banco_regis.
+[treeopen] top.top_level_tb.top_level_test.banco_regis.regs3.
+[treeopen] top.top_level_tb.top_level_test.banco_regis.regs4.
+[treeopen] top.top_level_tb.top_level_test.banco_regis.regs5.
+[treeopen] top.top_level_tb.top_level_test.pc_test.
+[treeopen] top.top_level_tb.top_level_test.ula_calc.
+[sst_width] 350
+[signals_width] 304
+[sst_expanded] 1
+[sst_vpaned_height] 579
+@28
+top.top_level_tb.clk
+@22
+#{top.top_level_tb.top_level_test.data_in_acumulador[15:0]} top.top_level_tb.top_level_test.data_in_acumulador[15] top.top_level_tb.top_level_test.data_in_acumulador[14] top.top_level_tb.top_level_test.data_in_acumulador[13] top.top_level_tb.top_level_test.data_in_acumulador[12] top.top_level_tb.top_level_test.data_in_acumulador[11] top.top_level_tb.top_level_test.data_in_acumulador[10] top.top_level_tb.top_level_test.data_in_acumulador[9] top.top_level_tb.top_level_test.data_in_acumulador[8] top.top_level_tb.top_level_test.data_in_acumulador[7] top.top_level_tb.top_level_test.data_in_acumulador[6] top.top_level_tb.top_level_test.data_in_acumulador[5] top.top_level_tb.top_level_test.data_in_acumulador[4] top.top_level_tb.top_level_test.data_in_acumulador[3] top.top_level_tb.top_level_test.data_in_acumulador[2] top.top_level_tb.top_level_test.data_in_acumulador[1] top.top_level_tb.top_level_test.data_in_acumulador[0]
+@28
+#{top.top_level_tb.top_level_test.selecao[1:0]} top.top_level_tb.top_level_test.selecao[1] top.top_level_tb.top_level_test.selecao[0]
+top.top_level_tb.top_level_test.wr_en_banco_reg
+top.top_level_tb.top_level_test.wr_en_acumulador
+@22
+#{top.top_level_tb.top_level_test.reg1_leitura_saida[15:0]} top.top_level_tb.top_level_test.reg1_leitura_saida[15] top.top_level_tb.top_level_test.reg1_leitura_saida[14] top.top_level_tb.top_level_test.reg1_leitura_saida[13] top.top_level_tb.top_level_test.reg1_leitura_saida[12] top.top_level_tb.top_level_test.reg1_leitura_saida[11] top.top_level_tb.top_level_test.reg1_leitura_saida[10] top.top_level_tb.top_level_test.reg1_leitura_saida[9] top.top_level_tb.top_level_test.reg1_leitura_saida[8] top.top_level_tb.top_level_test.reg1_leitura_saida[7] top.top_level_tb.top_level_test.reg1_leitura_saida[6] top.top_level_tb.top_level_test.reg1_leitura_saida[5] top.top_level_tb.top_level_test.reg1_leitura_saida[4] top.top_level_tb.top_level_test.reg1_leitura_saida[3] top.top_level_tb.top_level_test.reg1_leitura_saida[2] top.top_level_tb.top_level_test.reg1_leitura_saida[1] top.top_level_tb.top_level_test.reg1_leitura_saida[0]
+@23
+#{top.top_level_tb.top_level_test.op_code[4:0]} top.top_level_tb.top_level_test.op_code[4] top.top_level_tb.top_level_test.op_code[3] top.top_level_tb.top_level_test.op_code[2] top.top_level_tb.top_level_test.op_code[1] top.top_level_tb.top_level_test.op_code[0]
+@28
+#{top.top_level_tb.top_level_test.estado[1:0]} top.top_level_tb.top_level_test.estado[1] top.top_level_tb.top_level_test.estado[0]
+@22
+#{top.top_level_tb.top_level_test.ula_calc.saida_numero[15:0]} top.top_level_tb.top_level_test.ula_calc.saida_numero[15] top.top_level_tb.top_level_test.ula_calc.saida_numero[14] top.top_level_tb.top_level_test.ula_calc.saida_numero[13] top.top_level_tb.top_level_test.ula_calc.saida_numero[12] top.top_level_tb.top_level_test.ula_calc.saida_numero[11] top.top_level_tb.top_level_test.ula_calc.saida_numero[10] top.top_level_tb.top_level_test.ula_calc.saida_numero[9] top.top_level_tb.top_level_test.ula_calc.saida_numero[8] top.top_level_tb.top_level_test.ula_calc.saida_numero[7] top.top_level_tb.top_level_test.ula_calc.saida_numero[6] top.top_level_tb.top_level_test.ula_calc.saida_numero[5] top.top_level_tb.top_level_test.ula_calc.saida_numero[4] top.top_level_tb.top_level_test.ula_calc.saida_numero[3] top.top_level_tb.top_level_test.ula_calc.saida_numero[2] top.top_level_tb.top_level_test.ula_calc.saida_numero[1] top.top_level_tb.top_level_test.ula_calc.saida_numero[0]
+#{top.top_level_tb.top_level_test.ula_calc.entrada1_numero[15:0]} top.top_level_tb.top_level_test.ula_calc.entrada1_numero[15] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[14] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[13] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[12] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[11] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[10] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[9] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[8] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[7] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[6] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[5] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[4] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[3] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[2] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[1] top.top_level_tb.top_level_test.ula_calc.entrada1_numero[0]
+#{top.top_level_tb.top_level_test.ula_calc.entrada2_numero[15:0]} top.top_level_tb.top_level_test.ula_calc.entrada2_numero[15] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[14] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[13] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[12] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[11] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[10] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[9] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[8] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[7] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[6] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[5] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[4] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[3] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[2] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[1] top.top_level_tb.top_level_test.ula_calc.entrada2_numero[0]
+@28
+#{top.top_level_tb.top_level_test.reg1_leitura[2:0]} top.top_level_tb.top_level_test.reg1_leitura[2] top.top_level_tb.top_level_test.reg1_leitura[1] top.top_level_tb.top_level_test.reg1_leitura[0]
+#{top.top_level_tb.top_level_test.reg_escrita[2:0]} top.top_level_tb.top_level_test.reg_escrita[2] top.top_level_tb.top_level_test.reg_escrita[1] top.top_level_tb.top_level_test.reg_escrita[0]
+@22
+#{top.top_level_tb.top_level_test.banco_regis.regs4.data_out[15:0]} top.top_level_tb.top_level_test.banco_regis.regs4.data_out[15] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[14] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[13] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[12] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[11] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[10] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[9] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[8] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[7] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[6] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[5] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[4] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[3] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[2] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[1] top.top_level_tb.top_level_test.banco_regis.regs4.data_out[0]
+#{top.top_level_tb.top_level_test.banco_regis.regs3.data_out[15:0]} top.top_level_tb.top_level_test.banco_regis.regs3.data_out[15] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[14] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[13] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[12] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[11] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[10] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[9] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[8] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[7] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[6] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[5] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[4] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[3] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[2] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[1] top.top_level_tb.top_level_test.banco_regis.regs3.data_out[0]
+#{top.top_level_tb.top_level_test.data_out_acumulador[15:0]} top.top_level_tb.top_level_test.data_out_acumulador[15] top.top_level_tb.top_level_test.data_out_acumulador[14] top.top_level_tb.top_level_test.data_out_acumulador[13] top.top_level_tb.top_level_test.data_out_acumulador[12] top.top_level_tb.top_level_test.data_out_acumulador[11] top.top_level_tb.top_level_test.data_out_acumulador[10] top.top_level_tb.top_level_test.data_out_acumulador[9] top.top_level_tb.top_level_test.data_out_acumulador[8] top.top_level_tb.top_level_test.data_out_acumulador[7] top.top_level_tb.top_level_test.data_out_acumulador[6] top.top_level_tb.top_level_test.data_out_acumulador[5] top.top_level_tb.top_level_test.data_out_acumulador[4] top.top_level_tb.top_level_test.data_out_acumulador[3] top.top_level_tb.top_level_test.data_out_acumulador[2] top.top_level_tb.top_level_test.data_out_acumulador[1] top.top_level_tb.top_level_test.data_out_acumulador[0]
+[pattern_trace] 1
+[pattern_trace] 0
