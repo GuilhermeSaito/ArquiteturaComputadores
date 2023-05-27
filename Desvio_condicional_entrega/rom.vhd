@@ -31,14 +31,16 @@ architecture a_rom of rom is
     1  => B"00001_011_000000000",   -- MOV $reg3, 0
     2  => B"00001_100_000000000",   -- MOV $reg4, 0
     3  => B"00010_000001000_011",   -- LD A, $reg3 -- Soma (comeco)
-    4  => B"00011_000001000_100",   -- ADD A, $reg4
+    4  => B"00011_0000010_00100",   -- ADD A, $reg4
     5  => B"00110_000001000_100",   -- LD A, $reg4    -- Atribui o valor do acumulador no registrador
     6  => B"00010_000001000_011",   -- LD A, $reg3 -- Soma (comeco)
-    7  => B"00111_000001000_001",   -- ADD A, 1
+    7  => B"00111_0000010_00001",   -- ADD A, 1
     8  => B"00110_000001000_011",   -- LD A, $reg3    -- Atribui o valor do acumulador no registrador
-    9  => B"01000_000000000111",    -- JREQ -7
-    10 => B"00010_000001000_100",   -- LD A, $reg4
-    11  => B"00110_000001000_101",   -- LD A, $reg5    -- Atribui o valor do acumulador no registrador
+    9  => B"00110_000001000_011",   -- LD A, $reg3    -- Atribui o valor do registrador desejado para o Acumulador, nesse caso especifico n precisaria estar aqui
+    10 => B"00100_0000010_11110",   -- SUB $acumulador, 30
+    11 => B"01000_000000000111",    -- JREQ -7
+    12 => B"00010_000001000_100",   -- LD A, $reg4
+    13 => B"00110_000001000_101",   -- LD A, $reg5    -- Atribui o valor do acumulador no registrador
     others => (others=>'0')
  );
  

@@ -64,6 +64,7 @@ architecture a_top_level of top_level is
     port(
         selecao                             : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
         entrada1_numero, entrada2_numero    : IN UNSIGNED(15 DOWNTO 0);
+        jump_cond_flag_ula                  : OUT STD_LOGIC;
         saida_numero                        : OUT UNSIGNED(15 DOWNTO 0)
     );
     end component;
@@ -114,6 +115,7 @@ architecture a_top_level of top_level is
     signal jump_flag : std_logic;
     signal jump_address : unsigned(23 downto 0) := (others => '0');
     signal jump_cond_flag : std_logic;
+    signal jump_cond_flag_ula : std_logic;
 
     -- Debug por enquanto
     signal op_code : unsigned(4 downto 0);
@@ -163,6 +165,7 @@ begin
         selecao         => selecao,
         entrada1_numero => data_out_acumulador,
         entrada2_numero => entrada2_ula,
+        jump_cond_flag_ula => jump_cond_flag_ula,
         saida_numero    => data_in_ac                   
     );
 
@@ -224,7 +227,7 @@ begin
         estado = "10"             -- E estiver no estado de EXECUTE
     else '0';
 
-    entrada2_ula <= resize(saida_instrucao(2 downto 0), entrada2_ula'length) when -- Outra entrada da ULA vai ser
+    entrada2_ula <= resize(saida_instrucao(4 downto 0), entrada2_ula'length) when -- Outra entrada da ULA vai ser
         op_code = "00100" or        -- Uma constante quando for subtracao
         op_code = "00111"           -- Uma constante quando for soma com constante
         else reg1_leitura_saida;    -- Se nao, vai ser o valor do registrador mesmo
@@ -237,7 +240,7 @@ begin
 
     -- --------------------- JUMP CONDICIONAL (foi alterado o componente pc)
     jump_cond_flag <= '1' when
-        op_code = "01000"
+        (op_code = "01000") and jump_cond_flag_ula = '1'
     else '0';
 
     -- --------------------- Soma ou Subtracao

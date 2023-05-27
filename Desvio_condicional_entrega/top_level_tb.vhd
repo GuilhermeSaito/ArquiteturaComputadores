@@ -34,7 +34,7 @@ begin
 
     sim_time_proc: process -- Marca o tempo total da simulação
     begin
-        wait for 10 us;
+        wait for 100 us;
         finished <= '1';
         wait;
     end process sim_time_proc;
