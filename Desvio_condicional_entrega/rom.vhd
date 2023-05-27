@@ -28,28 +28,17 @@ architecture a_rom of rom is
     -- Formato do binario: opcode_reg1_acumulador -- Atribui o valor do acumulador para o registrador
 
     0  => B"00000000000000000",     -- Nop
-    1  => B"00001_011_000000000",   -- MOV $reg3 0
-    2  => B"00001_100_000000000",   -- MOV $reg4 0
-    3  => B"00010_000001000_011",   -- LD $acumulador, $reg3 -- Soma (comeco)
-    4  => B"00011_000001000_100",   -- ADD $acumulador, $reg4
-    5  => B"00110_000001000_100",   -- LD $acumulador, $reg4    -- Atribui o valor do acumulador no registrador
-    6  => B"00010_000001000_011",   -- LD $acumulador, $reg3 -- Soma (comeco)
-    7  => B"00111_000001000_001",   -- ADD $acumulador, 1
-    8  => B"00110_000001000_011",   -- LD $acumulador, $reg3    -- Atribui o valor do acumulador no registrador
-    9  => B"01000_000000000111",    -- Jump_condicional subtrai 7
-    10 => B"00010_000001000_100",   -- LD $acumulador, $reg4
-    11  => B"00110_000001000_101",   -- LD $acumulador, $reg5    -- Atribui o valor do acumulador no registrador
-    
-
-
-    -- 6  => B"00010_000001000_101",   -- LD $acumulador, $reg5 -- Subtracao (comeco)
-    -- 7  => B"00100_000001000_001",   -- SUB $acumulador, contante1
-    -- 8  => B"00110_000001000_101",   -- LD $acumulador, $reg5    -- Atribui o valor do acumulador no registrador
-    -- 9  => B"00101_000000010100",    -- Jump para instrucao 20
-    -- 20 => B"00010_000001000_101",   -- LD $acumulador, $reg5
-    -- 21 => B"00110_000001000_011",   -- LD $acumulador, $reg3    -- Atribui o valor do acumulador no registrador
-    -- 22 => B"00101_000000000011",    -- Jump para instrucao 3
-    -- abaixo: casos omissos => (zero em todos os bits)
+    1  => B"00001_011_000000000",   -- MOV $reg3, 0
+    2  => B"00001_100_000000000",   -- MOV $reg4, 0
+    3  => B"00010_000001000_011",   -- LD A, $reg3 -- Soma (comeco)
+    4  => B"00011_000001000_100",   -- ADD A, $reg4
+    5  => B"00110_000001000_100",   -- LD A, $reg4    -- Atribui o valor do acumulador no registrador
+    6  => B"00010_000001000_011",   -- LD A, $reg3 -- Soma (comeco)
+    7  => B"00111_000001000_001",   -- ADD A, 1
+    8  => B"00110_000001000_011",   -- LD A, $reg3    -- Atribui o valor do acumulador no registrador
+    9  => B"01000_000000000111",    -- JREQ -7
+    10 => B"00010_000001000_100",   -- LD A, $reg4
+    11  => B"00110_000001000_101",   -- LD A, $reg5    -- Atribui o valor do acumulador no registrador
     others => (others=>'0')
  );
  

@@ -193,30 +193,28 @@ begin
     -- --------------------- MOV
     -- Caso o op_code MOV ou Atribuir o acumulador para algum registrador, entao eh para atribuir um valor para o registrador
     reg_escrita <= 
-        saida_instrucao(11 downto 9) when op_code = "00001" else
-        saida_instrucao(2 downto 0) when op_code = "00110" else
+        saida_instrucao(11 downto 9) when op_code = "00001" else    -- Especifica em qual registrador deve ser escrito quando for atribuir uma constante
+        saida_instrucao(2 downto 0) when op_code = "00110" else     -- Especifica em qual registrador deve ser escrito quando for atribuir o acumulador
         (others => '0');
     -- O banco de registradores vai receber os dados quando for
-    data_in_banco <= 
-        resize(saida_instrucao(8 downto 0), data_in_banco'length) when op_code = "00001"  else -- constante = mov
-        data_out_acumulador when op_code = "00110" else
+    data_in_banco <= resize(saida_instrucao(8 downto 0), data_in_banco'length) when
+        op_code = "00001"                                           -- Atribuir constante para registrador
+    else data_out_acumulador when
+        op_code = "00110" else                                      -- Atribuir Acumulador para registrador
         (others => '0');
 
     -- --------------------- LD
-    -- Caso o op_code for = "00001" ou "00010", entao eh para atribuir um valor para o registrador
-    reg1_leitura <= saida_instrucao(2 downto 0) when   -- Precisa atualizar qual registrador sera lido do banco de registradores quando
+    reg1_leitura <= saida_instrucao(2 downto 0) when    -- Precisa atualizar qual registrador sera lido do banco de registradores quando
             op_code = "00010" or    -- For um ld
             op_code = "00011" or    -- soma
             op_code = "00100"       -- Ou subtracao
         else (others => '0');
 
-    data_in_acumulador <= data_in_ac when 
-        op_code = "00011" or
-        op_code = "00100" or
-        op_code = "00111"
-    else reg1_leitura_saida; --when
-    --    op_code = "00010"
-    --else data_out_acumulador;
+    data_in_acumulador <= data_in_ac when               -- O Acumulador vai receber o resultado da ULA quando for
+        op_code = "00011" or                            -- Soma
+        op_code = "00100" or                            -- Subtracao
+        op_code = "00111"                               -- Soma com constante
+    else reg1_leitura_saida;                            -- Se nao, vai recer o valor do registrador mesmo
 
     wr_en_acumulador <= '1' when -- Precisa atualizar o acumulador quando for
         (op_code = "00010" or     -- ld
@@ -226,10 +224,10 @@ begin
         estado = "10"             -- E estiver no estado de EXECUTE
     else '0';
 
-    entrada2_ula <= resize(saida_instrucao(2 downto 0), entrada2_ula'length) when
-        op_code = "00100" or
-        op_code = "00111"
-        else reg1_leitura_saida;
+    entrada2_ula <= resize(saida_instrucao(2 downto 0), entrada2_ula'length) when -- Outra entrada da ULA vai ser
+        op_code = "00100" or        -- Uma constante quando for subtracao
+        op_code = "00111"           -- Uma constante quando for soma com constante
+        else reg1_leitura_saida;    -- Se nao, vai ser o valor do registrador mesmo
 
     -- --------------------- JUMP (foi alterado o componente pc)
     jump_flag <= '1' when
