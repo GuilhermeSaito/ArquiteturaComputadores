@@ -11,17 +11,17 @@ architecture a_banco_reg_tb of banco_reg_tb is
     component banco_reg is
         port( 
         -- Qual registrador utilizar, considerando do s0 a s7, entao 000 = s0 e 111 = s7
-        reg1_leitura : IN UNSIGNED(2 DOWNTO 0);
-        reg2_leitura : IN UNSIGNED(2 DOWNTO 0);
+        reg1_leitura : IN unsigned(2 DOWNTO 0);
+        reg2_leitura : IN unsigned(2 DOWNTO 0);
         data_in : in unsigned(15 downto 0);
         -- Determinar qual registrador vai escrever
-        reg_escrita : IN UNSIGNED(2 DOWNTO 0);
+        reg_escrita : IN unsigned(2 DOWNTO 0);
         wr_en : in std_logic;
         clk : in std_logic;
         rst : in std_logic;
         -- Saida do banco de registradores
-        reg1_leitura_saida : OUT UNSIGNED(15 DOWNTO 0);
-        reg2_leitura_saida : OUT UNSIGNED(15 DOWNTO 0)
+        reg1_leitura_saida : OUT unsigned(15 DOWNTO 0);
+        reg2_leitura_saida : OUT unsigned(15 DOWNTO 0)
         );
     end component;
 

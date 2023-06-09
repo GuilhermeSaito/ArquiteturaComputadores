@@ -5,17 +5,17 @@ use ieee.numeric_std.all;
 entity banco_reg is
     port( 
         -- Qual registrador utilizar, considerando do s0 a s7, entao 000 = s0 e 111 = s7
-        reg1_leitura : IN UNSIGNED(2 DOWNTO 0);
-        reg2_leitura : IN UNSIGNED(2 DOWNTO 0);
+        reg1_leitura : IN unsigned(2 DOWNTO 0);
+        reg2_leitura : IN unsigned(2 DOWNTO 0);
         data_in : in unsigned(15 downto 0);
         -- Determinar qual registrador vai escrever
-        reg_escrita : IN UNSIGNED(2 DOWNTO 0);
+        reg_escrita : IN unsigned(2 DOWNTO 0);
         wr_en : in std_logic;
         clk : in std_logic;
         rst : in std_logic;
         -- Saida do banco de registradores
-        reg1_leitura_saida : OUT UNSIGNED(15 DOWNTO 0);
-        reg2_leitura_saida : OUT UNSIGNED(15 DOWNTO 0)
+        reg1_leitura_saida : OUT unsigned(15 DOWNTO 0);
+        reg2_leitura_saida : OUT unsigned(15 DOWNTO 0)
     );
 end entity;
 
@@ -34,14 +34,14 @@ end component;
 -- Variavel para ver qual registrador sera escrito, por default = 0
 SIGNAL write_reg : STD_LOGIC_VECTOR(7 DOWNTO 0) := "00000000";
 
-SIGNAL data_out_regs0 : UNSIGNED(15 DOWNTO 0);
-SIGNAL data_out_regs1 : UNSIGNED(15 DOWNTO 0);
-SIGNAL data_out_regs2 : UNSIGNED(15 DOWNTO 0);
-SIGNAL data_out_regs3 : UNSIGNED(15 DOWNTO 0);
-SIGNAL data_out_regs4 : UNSIGNED(15 DOWNTO 0);
-SIGNAL data_out_regs5 : UNSIGNED(15 DOWNTO 0);
-SIGNAL data_out_regs6 : UNSIGNED(15 DOWNTO 0);
-SIGNAL data_out_regs7 : UNSIGNED(15 DOWNTO 0);
+SIGNAL data_out_regs0 : unsigned(15 DOWNTO 0);
+SIGNAL data_out_regs1 : unsigned(15 DOWNTO 0);
+SIGNAL data_out_regs2 : unsigned(15 DOWNTO 0);
+SIGNAL data_out_regs3 : unsigned(15 DOWNTO 0);
+SIGNAL data_out_regs4 : unsigned(15 DOWNTO 0);
+SIGNAL data_out_regs5 : unsigned(15 DOWNTO 0);
+SIGNAL data_out_regs6 : unsigned(15 DOWNTO 0);
+SIGNAL data_out_regs7 : unsigned(15 DOWNTO 0);
 
 begin
     

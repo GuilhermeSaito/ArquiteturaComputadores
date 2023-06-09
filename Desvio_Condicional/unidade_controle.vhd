@@ -9,7 +9,7 @@ entity unidade_controle is
         estado                                                                          : IN unsigned(1 downto 0);
         data_out_acumulador, reg1_leitura_saida, data_in_ac                             : IN unsigned(15 downto 0);
         wr_en_pc, wr_en_banco_reg, wr_en_acumulador, wr_en_ula                          : OUT STD_LOGIC;
-        reg_escrita, reg1_leitura                                                       : OUT UNSIGNED(2 DOWNTO 0);
+        reg_escrita, reg1_leitura                                                       : OUT unsigned(2 DOWNTO 0);
         data_in_banco, data_in_acumulador, entrada2_ula                                 : OUT unsigned(15 downto 0);
         jump_flag, jump_cond_flag                                                       : OUT STD_LOGIC;
         jump_address                                                                    : OUT unsigned(23 downto 0);

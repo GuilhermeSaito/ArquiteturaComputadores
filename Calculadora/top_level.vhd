@@ -45,25 +45,25 @@ architecture a_top_level of top_level is
     component banco_reg is
     port(
         -- Qual registrador utilizar, considerando do s0 a s7, entao 000 = s0 e 111 = s7
-        reg1_leitura : IN UNSIGNED(2 DOWNTO 0);
-        reg2_leitura : IN UNSIGNED(2 DOWNTO 0);
+        reg1_leitura : IN unsigned(2 DOWNTO 0);
+        reg2_leitura : IN unsigned(2 DOWNTO 0);
         data_in : in unsigned(15 downto 0);
         -- Determinar qual registrador vai escrever
-        reg_escrita : IN UNSIGNED(2 DOWNTO 0);
+        reg_escrita : IN unsigned(2 DOWNTO 0);
         wr_en : in std_logic;
         clk : in std_logic;
         rst : in std_logic;
         -- Saida do banco de registradores
-        reg1_leitura_saida : OUT UNSIGNED(15 DOWNTO 0);
-        reg2_leitura_saida : OUT UNSIGNED(15 DOWNTO 0)
+        reg1_leitura_saida : OUT unsigned(15 DOWNTO 0);
+        reg2_leitura_saida : OUT unsigned(15 DOWNTO 0)
     );
     end component;
 
     component ula is 
     port(
         selecao                             : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-        entrada1_numero, entrada2_numero    : IN UNSIGNED(15 DOWNTO 0);
-        saida_numero                        : OUT UNSIGNED(15 DOWNTO 0)
+        entrada1_numero, entrada2_numero    : IN unsigned(15 DOWNTO 0);
+        saida_numero                        : OUT unsigned(15 DOWNTO 0)
     );
     end component;
 
@@ -97,15 +97,15 @@ architecture a_top_level of top_level is
 
     signal estado : unsigned(1 downto 0);
 
-    signal reg1_leitura : UNSIGNED(2 DOWNTO 0);
-    signal reg2_leitura : UNSIGNED(2 DOWNTO 0);
-    signal reg_escrita : UNSIGNED(2 DOWNTO 0);
-    signal reg1_leitura_saida : UNSIGNED(15 DOWNTO 0);
-    signal reg2_leitura_saida : UNSIGNED(15 DOWNTO 0);
+    signal reg1_leitura : unsigned(2 DOWNTO 0);
+    signal reg2_leitura : unsigned(2 DOWNTO 0);
+    signal reg_escrita : unsigned(2 DOWNTO 0);
+    signal reg1_leitura_saida : unsigned(15 DOWNTO 0);
+    signal reg2_leitura_saida : unsigned(15 DOWNTO 0);
     signal selecao : STD_LOGIC_VECTOR(1 DOWNTO 0);
-    signal saida_numero : UNSIGNED(15 DOWNTO 0);
+    signal saida_numero : unsigned(15 DOWNTO 0);
 
-    signal entrada2_ula : UNSIGNED(15 DOWNTO 0);
+    signal entrada2_ula : unsigned(15 DOWNTO 0);
 
     -- --------- Para o acumulador
     signal wr_en_acumulador : std_logic;

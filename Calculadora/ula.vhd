@@ -7,8 +7,8 @@ entity ula is
         -- 00 = Soma
         -- 01 = Subtracao
         selecao                             : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-        entrada1_numero, entrada2_numero    : IN UNSIGNED(15 DOWNTO 0);
-        saida_numero                        : OUT UNSIGNED(15 DOWNTO 0)
+        entrada1_numero, entrada2_numero    : IN unsigned(15 DOWNTO 0);
+        saida_numero                        : OUT unsigned(15 DOWNTO 0)
     );
 end entity ula;
 

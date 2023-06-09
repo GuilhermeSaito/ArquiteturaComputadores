@@ -10,17 +10,17 @@ architecture a_banco_reg_ula_tb of banco_reg_ula_tb is
     component banco_reg is
         port( 
             -- Qual registrador utilizar, considerando do s0 a s7, entao 000 = s0 e 111 = s7
-            reg1_leitura : IN UNSIGNED(2 DOWNTO 0);
-            reg2_leitura : IN UNSIGNED(2 DOWNTO 0);
+            reg1_leitura : IN unsigned(2 DOWNTO 0);
+            reg2_leitura : IN unsigned(2 DOWNTO 0);
             data_in : in unsigned(15 downto 0);
             -- Determinar qual registrador vai escrever
-            reg_escrita : IN UNSIGNED(2 DOWNTO 0);
+            reg_escrita : IN unsigned(2 DOWNTO 0);
             wr_en : in std_logic;
             clk : in std_logic;
             rst : in std_logic;
             -- Saida do banco de registradores
-            reg1_leitura_saida : OUT UNSIGNED(15 DOWNTO 0);
-            reg2_leitura_saida : OUT UNSIGNED(15 DOWNTO 0)
+            reg1_leitura_saida : OUT unsigned(15 DOWNTO 0);
+            reg2_leitura_saida : OUT unsigned(15 DOWNTO 0)
         );
     end component;
 
@@ -32,8 +32,8 @@ architecture a_banco_reg_ula_tb of banco_reg_ula_tb is
         -- 10 = Maior ou igual
         -- 11 = Verificacao de valor do sinal
         selecao                             : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-        entrada1_numero, entrada2_numero    : IN UNSIGNED(15 DOWNTO 0);
-        saida_numero                        : OUT UNSIGNED(15 DOWNTO 0);
+        entrada1_numero, entrada2_numero    : IN unsigned(15 DOWNTO 0);
+        saida_numero                        : OUT unsigned(15 DOWNTO 0);
         saida_maior_igual_bit               : OUT STD_LOGIC;
         saida_valor_igual_bit               : OUT STD_LOGIC
     );
@@ -45,12 +45,12 @@ architecture a_banco_reg_ula_tb of banco_reg_ula_tb is
     signal   clk, rst, wr_en    : std_logic;
 
     -- ---------------- Variaveis
-    SIGNAL saida_ula_entrada_banco : UNSIGNED(15 DOWNTO 0);
-    SIGNAL saida1_banco_entrada_ula : UNSIGNED(15 DOWNTO 0);
+    SIGNAL saida_ula_entrada_banco : unsigned(15 DOWNTO 0);
+    SIGNAL saida1_banco_entrada_ula : unsigned(15 DOWNTO 0);
     SIGNAL selecao_mux_saida_banco_constante : STD_LOGIC;
-    SIGNAL entrada_ula_mux : UNSIGNED(15 DOWNTO 0);
-    SIGNAL saida2_banco_mux_entrada_ula : UNSIGNED(15 DOWNTO 0);
-    SIGNAL constante : UNSIGNED(15 DOWNTO 0) := "0000000000000011";
+    SIGNAL entrada_ula_mux : unsigned(15 DOWNTO 0);
+    SIGNAL saida2_banco_mux_entrada_ula : unsigned(15 DOWNTO 0);
+    SIGNAL constante : unsigned(15 DOWNTO 0) := "0000000000000011";
 
 begin
     -- ---------------- Instancia do Banco

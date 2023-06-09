@@ -8,9 +8,9 @@ entity uc is
         entrada                          : IN unsigned(16 DOWNTO 0); 
 
         -- Regs a serem processados/movidos
-        out_data_1, out_data_2           : OUT UNSIGNED(16 DOWNTO 0);         
+        out_data_1, out_data_2           : OUT unsigned(16 DOWNTO 0);         
         -- Destino (pc ou banco de reg) OBS: para instruções que não "pulam" dest é sempre banco pois o dado ou é movido entre regs ou é armazenado no acumulador
-        dest                             : OUT UNSIGNED(2 DOWNTO 0);  
+        dest                             : OUT unsigned(2 DOWNTO 0);  
         -- Muxes que definem se o dado vai para a ula (soma/sub) ou para o banco de regs, bem como o destino da instrução      
         mux_out_1  : std_logic;
         mux_out_2  : std_logic;
@@ -18,7 +18,7 @@ entity uc is
         --Write enables
         wr_banco_reg : out std_logic;
         -- Output de constante
-        cte_out                          : OUT UNSIGNED(16 DOWNTO 0);   
+        cte_out                          : OUT unsigned(16 DOWNTO 0);   
         -- Jump flag
         jump_flag : std_logic                          
     );
