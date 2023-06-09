@@ -5,7 +5,8 @@ use ieee.numeric_std.all;
 
 -- Fetch = 00 = Atualiza o PC => Le o dado da ROM => Armazena no reg de instrucao
 -- Decode = 01 = Prepara o op code e deixa os dados tudo na boquinha
--- Execute = 10 = Da o write enable em tudo o que for necessario para executar
+-- N sei = 10 = Termino das contas da ULA e talvez algumas outras coisas? :v
+-- Execute = 11 = Da o write enable em tudo o que for necessario para executar
 
 entity maq_estados is
     port( 
@@ -22,7 +23,7 @@ begin
         if rst='1' then
             estado_s <= "00";
         elsif rising_edge(clk) then
-            if estado_s="10" then -- se agora esta em 2
+            if estado_s="11" then -- se agora esta em 2
                 estado_s <= "00"; -- o prox vai voltar ao zero
             else
                 estado_s <= estado_s+1; -- senao avanca

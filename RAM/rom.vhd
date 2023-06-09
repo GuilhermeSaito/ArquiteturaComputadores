@@ -24,11 +24,11 @@ architecture a_rom of rom is
     8  => B"00001_001_110011000",   -- MOV $reg1 408,
     9  => B"00010_000_000000001",   -- MOV A, $reg1  -- Atribui o valor do reg1 para o Acumulador
     10 => B"01001_000_000101110",   -- LD A, 0x3f     -- Atribui o valor do acumulador na memoria 63 da RAM
-    11 => B"01010_111_000101110",   -- LD $reg7, 0x63 -- Atribui o valor da memoria 63 da RAM no registrador 7
+    11 => B"01010_111_000101110",   -- LD $reg7, 0x3f -- Atribui o valor da memoria 63 da RAM no registrador 7
     12 => B"00001_010_100100011",   -- MOV $reg2 291,
     13 => B"00010_000_000000010",   -- MOV A, $reg2  -- Atribui o valor do reg2 para o Acumulador
     14 => B"01001_000_000011101",   -- LD A, 0x1d     -- Atribui o valor do acumulador na memoria 29 da RAM
-    15 => B"01010_100_000011101",   -- LD $reg4, 0x4 -- Atribui o valor da memoria 29 da RAM no registrador 4
+    15 => B"01010_100_000011101",   -- LD $reg4, 0x1d -- Atribui o valor da memoria 29 da RAM no registrador 4
     others => (others=>'0')
  );
  

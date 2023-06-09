@@ -15,6 +15,8 @@ all:
 	ghdl -e rom
 	ghdl -a ula.vhd
 	ghdl -e ula
+	ghdl -a unidade_controle.vhd
+	ghdl -e unidade_controle
 	ghdl -a top_level.vhd
 	ghdl -e top_level
 	ghdl -a top_level_tb.vhd

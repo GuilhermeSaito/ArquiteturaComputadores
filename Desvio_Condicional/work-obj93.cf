@@ -1,0 +1,37 @@
+v 4
+file . "unidade_controle.vhd" "45a203ff41565db8119e1ffc325a69c910fe4340" "20230608153320.707":
+  entity unidade_controle at 1( 0) + 0 on 1929;
+  architecture rtl of unidade_controle at 20( 1278) + 0 on 1930;
+file . "reg_instrucao.vhd" "0353435460a0a9d8dd6b2fa9ae8cbc77743347a3" "20230608153320.394":
+  entity reg_instrucao at 1( 0) + 0 on 1917;
+  architecture a_reg_instrucao of reg_instrucao at 14( 298) + 0 on 1918;
+file . "acumulador.vhd" "7d5aa52b7165af895b899524a1c28f6412fbb6d9" "20230512182940.597":
+  entity acumulador at 1( 0) + 0 on 241;
+  architecture a_acumulador of acumulador at 15( 303) + 0 on 242;
+file . "top_level.vhd" "655de433b9d4981a78ea4bcafc93aae294aeb918" "20230608153320.761":
+  entity top_level at 1( 0) + 0 on 1931;
+  architecture a_top_level of top_level at 11( 153) + 0 on 1932;
+file . "rom.vhd" "74fae6b290e438133af65eca9e7b48f470815354" "20230608153320.604":
+  entity rom at 1( 0) + 0 on 1925;
+  architecture a_rom of rom at 12( 212) + 0 on 1926;
+file . "maq_estados.vhd" "611a9f6e81451562edcc8ff5bc940e8185c8e289" "20230608153320.495":
+  entity maq_estados at 1( 0) + 0 on 1921;
+  architecture a_maq_estados of maq_estados at 18( 504) + 0 on 1922;
+file . "soma1_pc.vhd" "3b0654a9eeb1628f49bfa84bc8701ec46e7dcebe" "20230608153320.342":
+  entity soma1_pc at 1( 0) + 0 on 1915;
+  architecture a_soma1_pc of soma1_pc at 14( 238) + 0 on 1916;
+file . "reg16bits.vhd" "c19f7660f8f159915beb0d62789588d4b9225bee" "20230608153320.289":
+  entity reg16bits at 1( 0) + 0 on 1913;
+  architecture a_reg16bits of reg16bits at 15( 296) + 0 on 1914;
+file . "pc.vhd" "75f7b295c21bbdaab4da5949d24b9ae65c5c1558" "20230608153320.444":
+  entity pc at 1( 0) + 0 on 1919;
+  architecture a_pc of pc at 16( 327) + 0 on 1920;
+file . "banco_reg.vhd" "b51a53c1f980e62da365ecba54c6008bb8853a9e" "20230608153320.548":
+  entity banco_reg at 1( 0) + 0 on 1923;
+  architecture a_banco_reg of banco_reg at 22( 689) + 0 on 1924;
+file . "ula.vhd" "1f1f9c8f30426bb69950466006938841df6bf043" "20230608153320.655":
+  entity ula at 1( 0) + 0 on 1927;
+  architecture rtl of ula at 17( 509) + 0 on 1928;
+file . "top_level_tb.vhd" "bb51e09b31b1cfebea321b3dd05c60452defef4e" "20230608153320.830":
+  entity top_level_tb at 1( 0) + 0 on 1933;
+  architecture a_top_level_tb of top_level_tb at 8( 106) + 0 on 1934;
