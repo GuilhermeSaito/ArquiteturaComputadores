@@ -13,3 +13,4 @@ SUB - 00100_000000000000    = Subtrai Acumulador com endereco, retorna o resulta
 
 JP  - 00101_000000000000    = Pula para o endereco X
 
+JREQ - 00110_000000000000

@@ -15,19 +15,14 @@ entity ula is
 end entity ula;
 
 architecture rtl of ula is
-
-signal entrada1, entrada2 : signed(15 downto 0);
     
 begin
 
-    entrada1 <= signed(entrada1_numero);
-    entrada2 <= signed(entrada2_numero);
+    saida_numero <= entrada1_numero + entrada2_numero WHEN selecao = "00" and wr_en = '1' else
+                    entrada1_numero - entrada2_numero WHEN selecao = "01" and wr_en = '1';
 
-    saida_numero <= unsigned(resize(entrada1 + entrada2, saida_numero'length)) WHEN selecao = "00" and wr_en = '1' else
-                    unsigned(resize(entrada1 - entrada2, saida_numero'length)) WHEN selecao = "01" and wr_en = '1';
-
-    jump_cond_flag_ula <= '1' WHEN not((to_integer(unsigned((entrada1 + entrada2)))) = 0)  and (selecao = "01") and (wr_en = '1') else
-                          '0' WHEN (to_integer(unsigned((entrada1 + entrada2)))) = 0  and (selecao = "01") and (wr_en = '1');
+    jump_cond_flag_ula <= '1' WHEN not((to_integer((entrada1_numero + entrada2_numero))) = 0)  and (selecao = "00") and (wr_en = '1') else
+                          '0' WHEN (to_integer((entrada1_numero + entrada2_numero))) = 0  and (selecao = "00") and (wr_en = '1');
 
 
 end architecture rtl;

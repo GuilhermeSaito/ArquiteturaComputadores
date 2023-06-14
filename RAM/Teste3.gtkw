@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Fri Jun  9 20:07:36 2023
+[*] Wed Jun 14 20:58:46 2023
 [*]
 [dumpfile] "/home/arudina/Desktop/ArquiteturaComputadores/RAM/top_level_tb.ghw"
-[dumpfile_mtime] "Fri Jun  9 20:04:25 2023"
-[dumpfile_size] 37472
+[dumpfile_mtime] "Wed Jun 14 20:57:47 2023"
+[dumpfile_size] 37469
 [savefile] "/home/arudina/Desktop/ArquiteturaComputadores/RAM/Teste3.gtkw"
 [timestart] 0
 [size] 1846 1016
-[pos] -51 -51
-*-29.716866 1014000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -101 -101
+*-29.716866 1323000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.top_level_tb.
 [treeopen] top.top_level_tb.top_level_test.
@@ -17,14 +17,15 @@
 [treeopen] top.top_level_tb.top_level_test.pc_test.
 [treeopen] top.top_level_tb.top_level_test.ranzona.
 [sst_width] 233
-[signals_width] 238
+[signals_width] 284
 [sst_expanded] 1
 [sst_vpaned_height] 280
-@22
+@24
 #{top.top_level_tb.top_level_test.acumulador.data_out[15:0]} top.top_level_tb.top_level_test.acumulador.data_out[15] top.top_level_tb.top_level_test.acumulador.data_out[14] top.top_level_tb.top_level_test.acumulador.data_out[13] top.top_level_tb.top_level_test.acumulador.data_out[12] top.top_level_tb.top_level_test.acumulador.data_out[11] top.top_level_tb.top_level_test.acumulador.data_out[10] top.top_level_tb.top_level_test.acumulador.data_out[9] top.top_level_tb.top_level_test.acumulador.data_out[8] top.top_level_tb.top_level_test.acumulador.data_out[7] top.top_level_tb.top_level_test.acumulador.data_out[6] top.top_level_tb.top_level_test.acumulador.data_out[5] top.top_level_tb.top_level_test.acumulador.data_out[4] top.top_level_tb.top_level_test.acumulador.data_out[3] top.top_level_tb.top_level_test.acumulador.data_out[2] top.top_level_tb.top_level_test.acumulador.data_out[1] top.top_level_tb.top_level_test.acumulador.data_out[0]
 #{top.top_level_tb.top_level_test.ranzona.dado_out_ram[15:0]} top.top_level_tb.top_level_test.ranzona.dado_out_ram[15] top.top_level_tb.top_level_test.ranzona.dado_out_ram[14] top.top_level_tb.top_level_test.ranzona.dado_out_ram[13] top.top_level_tb.top_level_test.ranzona.dado_out_ram[12] top.top_level_tb.top_level_test.ranzona.dado_out_ram[11] top.top_level_tb.top_level_test.ranzona.dado_out_ram[10] top.top_level_tb.top_level_test.ranzona.dado_out_ram[9] top.top_level_tb.top_level_test.ranzona.dado_out_ram[8] top.top_level_tb.top_level_test.ranzona.dado_out_ram[7] top.top_level_tb.top_level_test.ranzona.dado_out_ram[6] top.top_level_tb.top_level_test.ranzona.dado_out_ram[5] top.top_level_tb.top_level_test.ranzona.dado_out_ram[4] top.top_level_tb.top_level_test.ranzona.dado_out_ram[3] top.top_level_tb.top_level_test.ranzona.dado_out_ram[2] top.top_level_tb.top_level_test.ranzona.dado_out_ram[1] top.top_level_tb.top_level_test.ranzona.dado_out_ram[0]
-#{top.top_level_tb.top_level_test.ranzona.endereco_ram[6:0]} top.top_level_tb.top_level_test.ranzona.endereco_ram[6] top.top_level_tb.top_level_test.ranzona.endereco_ram[5] top.top_level_tb.top_level_test.ranzona.endereco_ram[4] top.top_level_tb.top_level_test.ranzona.endereco_ram[3] top.top_level_tb.top_level_test.ranzona.endereco_ram[2] top.top_level_tb.top_level_test.ranzona.endereco_ram[1] top.top_level_tb.top_level_test.ranzona.endereco_ram[0]
 @25
+#{top.top_level_tb.top_level_test.ranzona.endereco_ram[6:0]} top.top_level_tb.top_level_test.ranzona.endereco_ram[6] top.top_level_tb.top_level_test.ranzona.endereco_ram[5] top.top_level_tb.top_level_test.ranzona.endereco_ram[4] top.top_level_tb.top_level_test.ranzona.endereco_ram[3] top.top_level_tb.top_level_test.ranzona.endereco_ram[2] top.top_level_tb.top_level_test.ranzona.endereco_ram[1] top.top_level_tb.top_level_test.ranzona.endereco_ram[0]
+@24
 #{top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[23:0]} top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[23] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[22] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[21] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[20] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[19] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[18] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[17] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[16] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[15] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[14] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[13] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[12] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[11] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[10] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[9] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[8] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[7] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[6] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[5] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[4] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[3] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[2] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[1] top.top_level_tb.top_level_test.pc_test.saida_pc_entrada_rom[0]
 [pattern_trace] 1
 [pattern_trace] 0

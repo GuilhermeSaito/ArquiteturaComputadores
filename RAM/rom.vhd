@@ -27,6 +27,10 @@ architecture a_rom of rom is
     2  => B"00001_10_0001010011",   -- LD, ($?), A  -- Acolocar o valor do Acumulador para a Memoria
     3  => B"00001_00_1111111111",   -- LD, A, -1     -- Colocar -1 no Acumulador
     4  => B"00011_000001010011",      -- ADD, A, ($?) -- Soma o valor do Acumulador com o do endereco ?
+    5  => B"00001_10_0001010111",   -- LD, ($?), A  -- Acolocar o valor do Acumulador para a Memoria
+    6  => B"00001_00_1111111101",   -- LD, A, -3     -- Colocar -1 no Acumulador
+    7  => B"00011_000001010011",      -- ADD, A, ($?) -- Soma o valor do Acumulador com o do endereco ?
+    8  => B"00110_000001010011",      -- ADD, A, ($?) -- Soma o valor do Acumulador com o do endereco ?
             
 
 

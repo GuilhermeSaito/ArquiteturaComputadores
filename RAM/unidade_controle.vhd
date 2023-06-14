@@ -57,7 +57,7 @@ begin
         estado = "11"             -- E estiver no estado de EXECUTE
     else '0';
     wr_en_ula <= '1' when
-        estado = "10" and
+        (estado = "11") and
         (flag_ADD_Acumulador_Mem = '1' or
          flag_SUB_Acumulador_Mem = '1')
     else '0';
@@ -66,11 +66,13 @@ begin
         (flag_LD_mem_ParaAcumulador = '1' or
          flag_LD_Acumulador_ParaMem = '1' or
          flag_MOV_Mem_ParaAcumulador = '1' or
-         flag_MOV_Acumulador_ParaMem = '1' or
+         flag_MOV_Acumulador_ParaMem = '1')
+        --  flag_ADD_Acumulador_Mem = '1' or
+        --  flag_SUB_Acumulador_Mem = '1')
             
-         op_code  = "01010" or     -- Escrita de um dado da memoria RAM para o REGISTRADOR
-         op_code  = "01001" or     -- Escrita de um dado do ACUMULADOR para a memoria RAM
-         op_code  = "01011")       -- Escrita de um dado do REGISTRADOR para a memoria RAM
+        --  op_code  = "01010" or     -- Escrita de um dado da memoria RAM para o REGISTRADOR
+        --  op_code  = "01001" or     -- Escrita de um dado do ACUMULADOR para a memoria RAM
+        --  op_code  = "01011")       -- Escrita de um dado do REGISTRADOR para a memoria RAM
     else '0';
     wr_en_ponteiro <= '1' when
     estado = "10" and
@@ -78,10 +80,12 @@ begin
          flag_LD_Acumulador_ParaMem = '1' or
          flag_MOV_Mem_ParaAcumulador = '1' or
          flag_MOV_Acumulador_ParaMem = '1' or
+         flag_ADD_Acumulador_Mem = '1' or
+         flag_SUB_Acumulador_Mem = '1')
             
-         op_code  = "01010" or     -- Escrita de um dado da memoria RAM para o REGISTRADOR
-         op_code  = "01001" or     -- Escrita de um dado do ACUMULADOR para a memoria RAM
-         op_code  = "01011")       -- Escrita de um dado do REGISTRADOR para a memoria RAM
+        --  op_code  = "01010" or     -- Escrita de um dado da memoria RAM para o REGISTRADOR
+        --  op_code  = "01001" or     -- Escrita de um dado do ACUMULADOR para a memoria RAM
+        --  op_code  = "01011")       -- Escrita de um dado do REGISTRADOR para a memoria RAM
     else '0';
 
     -- Verificar o que vai fazer com o LD
@@ -147,6 +151,7 @@ begin
     data_in_acumulador <= data_in_ac when               -- O Acumulador vai receber o resultado da ULA quando for
         flag_ADD_Acumulador_Mem = '1' or
         flag_SUB_Acumulador_Mem = '1'
+    else "111111" & dado(9 downto 0) when dado(9) = '1' and flag_LD_const_ParaAcumulador = '1' -- Verificando se o valor eh negativo e adicionando 1 para esquerda
     else resize(dado(9 downto 0), data_in_acumulador'length) when flag_LD_const_ParaAcumulador = '1'
     else dado_out when flag_LD_mem_ParaAcumulador = '1' or flag_MOV_Mem_ParaAcumulador = '1';
 
@@ -161,12 +166,13 @@ begin
     jump_flag <= '1' when
         op_code = "00101"
     else '0';
-    jump_address <= resize(dado(11 downto 0), jump_address'length);
+    jump_address <= resize(dado(11 downto 0), jump_address'length) when op_code = "00101" else
+        resize("10", jump_address'length) when (op_code = "00110") and jump_cond_flag_ula = '1';
 
     -- --------------------- JUMP CONDICIONAL (foi alterado o componente pc)
-    -- jump_cond_flag <= '1' when
-    --     (op_code = "01000") and jump_cond_flag_ula = '1'
-    -- else '0';
+    jump_cond_flag <= '1' when
+        (op_code = "00110") and jump_cond_flag_ula = '1'
+    else '0';
 
     --------------------- Soma ou Subtracao
     selecao <= "00" when flag_ADD_Acumulador_Mem = '1' else -- Soma
