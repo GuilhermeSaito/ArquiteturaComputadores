@@ -11,15 +11,19 @@ entity unidade_controle is
         dado_out                                                                        : IN unsigned(15 downto 0);
         dado_out_ponteiro                                                               : IN unsigned(6 downto 0);
         contagem_instruction_ROM                                                        : IN unsigned(23 downto 0);
+        dado_flag_jump                                                                  : IN std_logic;
         wr_en_pc, wr_en_banco_reg, wr_en_acumulador, wr_en_ula, wr_en_ponteiro          : OUT STD_LOGIC;
+        wr_en_flag_jump                                                                 : OUT STD_LOGIC;
         reg_escrita, reg1_leitura                                                       : OUT unsigned(2 DOWNTO 0);
         data_in_banco, data_in_acumulador, entrada2_ula                                 : OUT unsigned(15 downto 0);
-        jump_flag, jump_cond_flag                                                       : OUT STD_LOGIC;
+        jump_flag                                                                       : OUT STD_LOGIC;
+        jump_cond_flag                                                                  : OUT STD_LOGIC;
         jump_address                                                                    : OUT unsigned(23 downto 0);
         selecao                                                                         : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
         endereco                                                                        : OUT unsigned(6 downto 0);
         wr_en                                                                           : OUT std_logic;
         dado_in                                                                         : OUT unsigned(15 downto 0);
+        dado_in_flag_jump                                                               : OUT std_logic;
         dado_in_ponteiro                                                                : OUT unsigned(6 downto 0)
     );
 end entity unidade_controle;
@@ -37,9 +41,15 @@ signal flag_MOV_Acumulador_ParaMem : std_logic;
 signal flag_ADD_Acumulador_Mem : std_logic;
 signal flag_SUB_Acumulador_Mem : std_logic;
     
+-- signal flag_jump_cond_flag_fico_0_aleluia : std_logic := '0';
 begin
     -- Pega somente os opcodes necessarios
     op_code <= dado(16 downto 12);
+
+    wr_en_flag_jump <= '1' when(estado = "11") and
+        (flag_ADD_Acumulador_Mem = '1' or
+         flag_SUB_Acumulador_Mem = '1')
+    else '0';
 
     wr_en_pc <= '1' when estado = "00" and contagem_instruction_ROM < "111111" else '0';
     wr_en_banco_reg <= '1' when estado = "11" else '0';
@@ -167,12 +177,21 @@ begin
         op_code = "00101"
     else '0';
     jump_address <= resize(dado(11 downto 0), jump_address'length) when op_code = "00101" else
-        resize("10", jump_address'length) when (op_code = "00110") and jump_cond_flag_ula = '1';
+        "111111111111" & dado(11 downto 0) when dado(11) = '1' and op_code = "00110" else
+        resize(dado(11 downto 0), jump_address'length) when dado(11) = '0' and op_code = "00110";
 
     -- --------------------- JUMP CONDICIONAL (foi alterado o componente pc)
-    jump_cond_flag <= '1' when
-        (op_code = "00110") and jump_cond_flag_ula = '1'
+    -- flag_jump_cond_flag_fico_0_aleluia <= '1' when jump_cond_flag_ula = '0' else '0' when op_code = "00110" and estado = "11";
+    jump_cond_flag <= dado_flag_jump when op_code = "00110"
     else '0';
+    dado_in_flag_jump <= jump_cond_flag_ula;
+    -- process(estado)
+    -- begin
+    --     if jump_cond_flag_ula = '1' then
+    --         flag_jump_cond_flag_fico_0_aleluia <= '1';
+    --     else flag_jump_cond_flag_fico_0_aleluia <= '0';
+    --     end if;
+    -- end process;
 
     --------------------- Soma ou Subtracao
     selecao <= "00" when flag_ADD_Acumulador_Mem = '1' else -- Soma

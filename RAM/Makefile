@@ -3,6 +3,8 @@ all:
 	ghdl -e reg16bits
 	ghdl -a reg7bits.vhd
 	ghdl -e reg7bits
+	ghdl -a reg1bits.vhd
+	ghdl -e reg1bits
 	ghdl -a ram.vhd
 	ghdl -e ram
 	ghdl -a soma1_pc.vhd

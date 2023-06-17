@@ -92,6 +92,16 @@ architecture a_top_level of top_level is
     );
     end component;
 
+    component reg1bits is
+    port( 
+        clk : in std_logic;
+        rst : in std_logic;
+        wr_en : in std_logic;
+        data_in : in std_logic;
+        data_out : out std_logic
+    );
+    end component;
+
     component reg_instrucao is
     port( 
         saida_rom : IN unsigned(16 downto 0);
@@ -119,15 +129,19 @@ architecture a_top_level of top_level is
         dado_out                                                                        : IN unsigned(15 downto 0);
         dado_out_ponteiro                                                               : IN unsigned(6 downto 0);
         contagem_instruction_ROM                                                        : IN unsigned(23 downto 0);
+        dado_flag_jump                                                                  : IN std_logic;
         wr_en_pc, wr_en_banco_reg, wr_en_acumulador, wr_en_ula, wr_en_ponteiro          : OUT STD_LOGIC;
+        wr_en_flag_jump                                                                 : OUT STD_LOGIC;
         reg_escrita, reg1_leitura                                                       : OUT unsigned(2 DOWNTO 0);
         data_in_banco, data_in_acumulador, entrada2_ula                                 : OUT unsigned(15 downto 0);
-        jump_flag, jump_cond_flag                                                       : OUT STD_LOGIC;
+        jump_flag                                                                       : OUT STD_LOGIC;
+        jump_cond_flag                                                                  : OUT STD_LOGIC;
         jump_address                                                                    : OUT unsigned(23 downto 0);
         selecao                                                                         : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
         endereco                                                                        : OUT unsigned(6 downto 0);
         wr_en                                                                           : OUT std_logic;
         dado_in                                                                         : OUT unsigned(15 downto 0);
+        dado_in_flag_jump                                                               : OUT std_logic;
         dado_in_ponteiro                                                                : OUT unsigned(6 downto 0)
     );
     end component;    
@@ -168,6 +182,10 @@ architecture a_top_level of top_level is
 
     signal dado_in_ponteiro : unsigned(6 downto 0);
     signal dado_out_ponteiro : unsigned(6 downto 0);
+
+    signal wr_en_flag : std_logic;
+    signal dado_flag_jump : std_logic;
+    signal dado_in_flag_jump : std_logic;
 
 begin
     rom_test : rom port map(
@@ -227,6 +245,14 @@ begin
         data_out => data_out_acumulador
     );
 
+    flag_jump : reg1bits port map(
+        clk => clk,
+        rst => rst,
+        wr_en => wr_en_flag,
+        data_in => dado_in_flag_jump,
+        data_out => dado_flag_jump
+    );
+
     ponteiro_endereco_RAM : reg7bits port map(
         clk => clk,
         rst => rst,
@@ -264,6 +290,8 @@ begin
         dado_out => dado_out_RAM,
         dado_out_ponteiro => dado_out_ponteiro,
         contagem_instruction_ROM => data_out,
+        dado_flag_jump => dado_flag_jump,
+        wr_en_flag_jump => wr_en_flag,
         reg_escrita => reg_escrita,
         reg1_leitura => reg1_leitura,
         data_in_banco => data_in_banco,
@@ -276,6 +304,7 @@ begin
         endereco => endereco_ram,
         wr_en => wr_en_ram,
         dado_in => dado_in_RAM,
+        dado_in_flag_jump => dado_in_flag_jump,
         dado_in_ponteiro => dado_in_ponteiro
     );
 

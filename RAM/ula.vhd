@@ -21,8 +21,8 @@ begin
     saida_numero <= entrada1_numero + entrada2_numero WHEN selecao = "00" and wr_en = '1' else
                     entrada1_numero - entrada2_numero WHEN selecao = "01" and wr_en = '1';
 
-    jump_cond_flag_ula <= '1' WHEN not((to_integer((entrada1_numero + entrada2_numero))) = 0)  and (selecao = "00") and (wr_en = '1') else
-                          '0' WHEN (to_integer((entrada1_numero + entrada2_numero))) = 0  and (selecao = "00") and (wr_en = '1');
+    jump_cond_flag_ula <= '1' WHEN ((to_integer((entrada1_numero + entrada2_numero))) = 0)  and (selecao = "00") and (wr_en = '1') else
+                          '0' WHEN not((to_integer((entrada1_numero + entrada2_numero))) = 0)  and (selecao = "00") and (wr_en = '1');
 
 
 end architecture rtl;

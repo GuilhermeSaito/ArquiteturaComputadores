@@ -30,7 +30,7 @@ begin
 			if jump_flag = '1' then
 				data <= jump_address;
 			elsif jump_condicional_flag = '1' then
-				data <= data_in - jump_address;
+				data <= (data_in - 1) + jump_address;
 			else
 				data <= data_in;
 			end if;
