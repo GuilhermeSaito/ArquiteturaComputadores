@@ -2,6 +2,7 @@ LD - 00001_00_0000000000   = opCode_oQueFazerComOAcumuladorRegistradorMemoriaCon
            00              = Colocar constante no Acumulador
            01              = Colocar no Acumulador o valor da memoria
            10              = Colocar na Memoria o Acumulador
+           11              = Colocar o valor da Memoria no ponteiro
 
 MOV - 00010_00_00000_00000  = opCode_DestinoEnderecoMemoria_OriginEnderecoMemoria
             01              = 00 -> Atribuir o valor do Origin para o Acumulador
@@ -14,3 +15,5 @@ SUB - 00100_000000000000    = Subtrai Acumulador com endereco, retorna o resulta
 JP  - 00101_000000000000    = Pula para o endereco X
 
 JREQ - 00110_000000000000
+
+LDP - 00111_000000000000    = Colocar constante no endereco apontado pelo ponteiro

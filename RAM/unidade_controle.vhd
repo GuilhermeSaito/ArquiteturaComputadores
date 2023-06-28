@@ -34,12 +34,15 @@ signal op_code : unsigned(4 downto 0);
 signal flag_LD_const_ParaAcumulador : STD_LOGIC;
 signal flag_LD_mem_ParaAcumulador : STD_LOGIC;
 signal flag_LD_Acumulador_ParaMem : STD_LOGIC;
+signal flag_LD_ValorMem_para_Ponteiro : STD_LOGIC;
 
 signal flag_MOV_Mem_ParaAcumulador : std_logic;
 signal flag_MOV_Acumulador_ParaMem : std_logic;
 
 signal flag_ADD_Acumulador_Mem : std_logic;
 signal flag_SUB_Acumulador_Mem : std_logic;
+
+signal flag_LDP_Const_Mem : std_logic;
     
 -- signal flag_jump_cond_flag_fico_0_aleluia : std_logic := '0';
 begin
@@ -76,7 +79,8 @@ begin
         (flag_LD_mem_ParaAcumulador = '1' or
          flag_LD_Acumulador_ParaMem = '1' or
          flag_MOV_Mem_ParaAcumulador = '1' or
-         flag_MOV_Acumulador_ParaMem = '1')
+         flag_MOV_Acumulador_ParaMem = '1' or
+         flag_LDP_Const_Mem = '1')
         --  flag_ADD_Acumulador_Mem = '1' or
         --  flag_SUB_Acumulador_Mem = '1')
             
@@ -88,6 +92,7 @@ begin
     estado = "10" and
         (flag_LD_mem_ParaAcumulador = '1' or
          flag_LD_Acumulador_ParaMem = '1' or
+         flag_LD_ValorMem_para_Ponteiro = '1' or
          flag_MOV_Mem_ParaAcumulador = '1' or
          flag_MOV_Acumulador_ParaMem = '1' or
          flag_ADD_Acumulador_Mem = '1' or
@@ -114,6 +119,11 @@ begin
         dado(11 downto 10) = "10" else
     '0';
 
+    flag_LD_ValorMem_para_Ponteiro <= '1' when
+        op_code = "00001" and
+        dado(11 downto 10) = "11" else
+    '0';
+
     flag_MOV_Mem_ParaAcumulador <= '1' when
         op_code = "00010" and
         dado(11 downto 10) = "00" else
@@ -130,6 +140,10 @@ begin
 
     flag_SUB_Acumulador_Mem <= '1' when
         op_code = "00100" else
+    '0';
+
+    flag_LDP_Const_Mem <= '1' when
+        op_code = "00111" else
     '0';
 
 
@@ -206,14 +220,16 @@ begin
         flag_LD_Acumulador_ParaMem  = '1' or
         flag_MOV_Acumulador_ParaMem = '1' or
         flag_ADD_Acumulador_Mem = '1' or
-        flag_SUB_Acumulador_Mem = '1';
+        flag_SUB_Acumulador_Mem = '1' or
+        flag_LDP_Const_Mem = '1';
 
     
     dado_in_ponteiro <= dado(6 downto 0) when -- <- O ponteiro vai receber em qual memoria deve acessar (por meio do valor especificado da ROM) e vai passar para o endereco da RAM 
         flag_LD_Acumulador_ParaMem  = '1' or
         flag_MOV_Acumulador_ParaMem = '1' or
         flag_ADD_Acumulador_Mem = '1' or
-        flag_SUB_Acumulador_Mem = '1';
+        flag_SUB_Acumulador_Mem = '1'
+        else dado_out(6 downto 0) when flag_LD_ValorMem_para_Ponteiro = '1';
 
     -- dado_in_ponteiro <= dado(6 downto 0) when -- <- O ponteiro vai receber em qual memoria deve acessar (por meio do valor especificado da ROM) e vai passar para o endereco da RAM 
     --     op_code  = "01010" or     -- Escrita de um dado da memoria RAM para o REGISTRADOR
@@ -225,7 +241,8 @@ begin
         flag_LD_Acumulador_ParaMem = '1' or
         flag_MOV_Acumulador_ParaMem = '1' or
         flag_ADD_Acumulador_Mem = '1' or
-        flag_SUB_Acumulador_Mem = '1';
+        flag_SUB_Acumulador_Mem = '1' else
+        resize(dado(11 downto 0), dado_in'length) when flag_LDP_Const_Mem = '1';
 
     
     

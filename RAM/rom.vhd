@@ -23,14 +23,31 @@ architecture a_rom of rom is
     -- 7  => B"00101_000000000101",       -- JP 5  -- Pula para o endereco 5
 
 
-    1  => B"00001_00_0000000011",   -- LD, A, 3     -- Colocar 3 no Acumulador
-    2  => B"00001_10_0001010011",   -- LD, ($?), A  -- Acolocar o valor do Acumulador para a Memoria
-    3  => B"00001_00_1111111111",   -- LD, A, -1     -- Colocar -1 no Acumulador
-    4  => B"00011_000001010011",      -- ADD, A, ($?) -- Soma o valor do Acumulador com o do endereco ?
-    5  => B"00001_10_0001010111",   -- LD, ($?), A  -- Acolocar o valor do Acumulador para a Memoria
-    6  => B"00001_00_1111111101",   -- LD, A, -3     -- Colocar -1 no Acumulador
-    7  => B"00011_000001010011",      -- ADD, A, ($?) -- Soma o valor do Acumulador com o do endereco ?
-    8  => B"00110_111111111111",      -- JREQ, -1
+    -- 1  => B"00001_00_0000000011",   -- LD, A, 3     -- Colocar 3 no Acumulador
+    -- 2  => B"00001_10_0001010011",   -- LD, ($?), A  -- Acolocar o valor do Acumulador para a Memoria
+    -- 3  => B"00001_00_1111111111",   -- LD, A, -1     -- Colocar -1 no Acumulador
+    -- 4  => B"00011_000001010011",      -- ADD, A, ($?) -- Soma o valor do Acumulador com o do endereco ?
+    -- 5  => B"00001_10_0001010111",   -- LD, ($?), A  -- Acolocar o valor do Acumulador para a Memoria
+    -- 6  => B"00001_00_1111111101",   -- LD, A, -3     -- Colocar -1 no Acumulador
+    -- 7  => B"00011_000001010011",      -- ADD, A, ($?) -- Soma o valor do Acumulador com o do endereco ?
+    -- 8  => B"00110_111111111111",      -- JREQ, -1
+
+    1  => B"00001_00_0000000100",   -- LD, A, 4     -- Colocar 4 no Acumulador
+    2  => B"00001_10_0000000011",   -- LD, $3, A  -- Acolocar o valor do Acumulador para a Memoria
+    3  => B"00001_11_0000000000",   -- LD, $3, ponteiro -- Coloca o valor do acumulador e aponta para o novo endereco de memoria
+    4  => B"00111_000000001000",   -- LD, ponteiro_mem, valor  -- Coloca uma constante no endereco da RAM apontado pelo ponteiro
+    5  => B"00011_000000000011",      -- ADD, A, $3 -- Soma o valor do Acumulador com o do endereco 3
+    6  => B"00001_10_0000000111",   -- LD, $7, A  -- Acolocar o valor 12 do Acumulador para a Memoria 7
+    7  => B"00001_11_0000000000",   -- LD, $7, ponteiro -- Coloca o valor do acumulador e aponta para o novo endereco de memoria
+    8  => B"00111_000000001000",   -- LD, ponteiro_mem, valor  -- Coloca uma constante no endereco da RAM apontado pelo ponteiro
+
+
+
+    -- 4  => B"00011_000001010011",      -- ADD, A, ($?) -- Soma o valor do Acumulador com o do endereco ?
+    -- 5  => B"00001_10_0001010111",   -- LD, ($?), A  -- Acolocar o valor do Acumulador para a Memoria
+    -- 6  => B"00001_00_1111111101",   -- LD, A, -3     -- Colocar -1 no Acumulador
+    -- 7  => B"00011_000001010011",      -- ADD, A, ($?) -- Soma o valor do Acumulador com o do endereco ?
+    -- 8  => B"00110_111111111111",      -- JREQ, -1
             
 
 
