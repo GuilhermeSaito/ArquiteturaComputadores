@@ -54,7 +54,7 @@ begin
          flag_SUB_Acumulador_Mem = '1')
     else '0';
 
-    wr_en_pc <= '1' when estado = "00" and contagem_instruction_ROM < "111111" else '0';
+    wr_en_pc <= '1' when estado = "00" and contagem_instruction_ROM < "1111111" else '0';
     wr_en_banco_reg <= '1' when estado = "11" else '0';
     wr_en_acumulador <= '1' when -- Precisa atualizar o acumulador quando for
         (flag_LD_const_ParaAcumulador = '1' or

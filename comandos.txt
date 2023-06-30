@@ -17,3 +17,101 @@ JP  - 00101_000000000000    = Pula para o endereco X
 JREQ - 00110_000000000000
 
 LDP - 00111_000000000000    = Colocar constante no endereco apontado pelo ponteiro
+
+BACKUP
+
+    1   => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    2   => B"00001_10_0000001010",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    3   => B"00001_00_0000000010",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    4   => B"00001_10_0000001011",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    5   => B"00001_00_0000000011",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    6   => B"00001_10_0000001101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    7   => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    8   => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    9   => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    10  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    11  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    12  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    13  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    14  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    15  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    16  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    17  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    18  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    19  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    20  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    21  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    22  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    23  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    24  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    25  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    26  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    27  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    28  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    29  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    30  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    31  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    32  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    33  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    34  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    35  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    36  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    37  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    38  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    39  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    40  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    41  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    42  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    43  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    44  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    45  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    46  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    47  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    48  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    49  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    50  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    51  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    52  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    53  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    54  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    55  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    56  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    57  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    58  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    59  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    60  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    61  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    62  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
+
+    63  => B"00001_00_0000000001",    -- LD, A, 1     -- Colocar 1 no Acumulador
+    64  => B"00001_10_0000000101",    -- LD, $5, A  -- Acolocar o valor do Acumulador para a Memoria
